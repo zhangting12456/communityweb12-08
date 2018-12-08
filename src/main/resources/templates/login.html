@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/logreg.css" type="text/css"/>
+    <link rel="stylesheet" href="css/sweet-alert.css">
+    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/login.js"></script>
+
+</head>
+<body>
+    <div class="login">
+        <div class="login-header">
+            <img src="image/log-logo.png" alt="logo"/>
+        </div>
+        <div class="login-main">
+            <div class="login-title">
+                欢迎登录
+            </div>
+            <!--action="imgVerificationCode"-->
+            <div class="login-form-div">
+                <form  method="post" class="login-form">
+                  <input  type="text" placeholder="用户名" name="username" class="login-text"/>
+                  <input type="password" name="password" placeholder="密码" class="login-text"/>
+                  <p>
+                        <input type="text" placeholder="验证码" name="vrifyCode" class="verification-code"/>
+                        <!--<input type="text" value="验证码" name="yanzhen" class="verification-phone"/>-->
+                      <img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" src="/defaultKaptcha"  class="verification-phone"/>
+                  </p>
+                  <input type="button" value="登录" class="login-btn" id="login_btn" style="margin-right:36px;"/>
+                  <input type="button" value="注册" class="login-btn" id="register-btn" />
+                  <p class="third-info">
+                      <span><img src="image/mark2.png" alt="info"/></span>
+                      <span>第三方一键快捷登录</span>
+                  </p>
+                  <p class="third-hyperlink">
+                      <span><img src="image/weixin.png"/></span>
+                      <span><img src="image/qq1.png"/></span>
+                  </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/sweet-alert.min.js"></script>
+<script>
+    $('#login_btn').click(function(){
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        var verCode = $("input[name='vrifyCode']").val();
+        // alert(username+'----'+password+'---'+verCode);
+        if(username!='' && password!='' && verCode!=''){
+            $.ajax({
+                url:'http://localhost:8888/userlogin',
+                type:'post',
+                data:$('.login-form').serialize(),
+                success:function(result){
+                    // alert(result.code+'----------'+result.extend.info);
+                    if(result.code==200){
+                        swal(result.extend.info,'','success');
+                        // alert(result.extend.info);
+                        setTimeout(function(){
+                            window.location.href="http://localhost:8888/index.html";
+                        },2000);
+                    }else{
+                        swal(result.extend.info,'','error');
+                    }
+                }
+            });
+        }else{
+          //  alert('登录失败');
+            swal('登录失败','','error');
+        }
+    });
+</script>
+</html>

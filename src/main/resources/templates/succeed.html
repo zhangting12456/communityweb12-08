@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript">
+        window.onload=function(){
+            var odiv = document.getElementById('div1');
+            var oul = odiv.getElementsByTagName('ul')[0];
+            var ali = oul.getElementsByTagName('li');
+            var spa = -2;
+            oul.innerHTML=oul.innerHTML+oul.innerHTML;
+            oul.style.width=ali[0].offsetWidth*ali.length+'px';
+            function move(){
+                if(oul.offsetLeft<-oul.offsetWidth/2){
+                    oul.style.left='0';
+                }
+                if(oul.offsetLeft>0){
+                    oul.style.left=-oul.offsetWidth/2+'px'
+                }
+                oul.style.left=oul.offsetLeft+spa+'px';
+            }
+            var timer = setInterval(move,30)
+
+            odiv.onmousemove=function(){clearInterval(timer);}
+            odiv.onmouseout=function(){timer = setInterval(move,30)};
+            document.getElementsByTagName('a')[0].onclick = function(){
+                spa=-2;
+            }
+            document.getElementsByTagName('a')[1].onclick = function(){
+                spa=2;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="image/logo.png" alt="logo"/>
+    </div>
+    <div class="navigation-bar">
+        <ul class="nav-bar-ul">
+            <li class="nav-bar-li"><a href="javascript:(0);">首页</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+            <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+        </ul>
+    </div>
+    <div class="user">
+        <ul>
+            <li ><a href="login.html">登录</a></li>
+            <li ><a href="register.html">注册</a></li>
+            <li>2018-11-31</li>
+            <li>
+                <div>星期六</div>
+                <div>18:48:32</div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="activity">
+    <div id="slider-wrap">
+        <ul id="slider">
+            <li data-color="#1abc9c">
+                <div>
+                    <h3>Slide #1</h3>
+                    <span>Sub-title #1</span>
+                </div>
+                <i class="fa fa-image"></i>
+            </li>
+            <li data-color="#3498db">
+                <div>
+                    <h3>Slide #2</h3>
+                    <span>Sub-title #2</span>
+                </div>
+                <i class="fa fa-gears"></i>
+            </li>
+            <li data-color="#9b59b6">
+                <div>
+                    <h3>Slide #3</h3>
+                    <span>Sub-title #3</span>
+                </div>
+                <i class="fa fa-sliders"></i>
+            </li>
+            <li data-color="#34495e">
+                <div>
+                    <h3>Slide #4</h3>
+                    <span>Sub-title #4</span>
+                </div>
+                <i class="fa fa-code"></i>
+            </li>
+            <li data-color="#e74c3c">
+                <div>
+                    <h3>Slide #5</h3>
+                    <span>Sub-title #5</span>
+                </div>
+                <i class="fa fa-microphone-slash"></i>
+            </li>
+        </ul>
+        <div class="btns" id="next"><i class="fa fa-arrow-right"></i></div>
+        <div class="btns" id="previous"><i class="fa fa-arrow-left"></i></div>
+        <div id="counter"></div>
+        <div id="pagination-wrap">
+            <ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="information" id="div1">
+    <ul>
+        <li>
+            <div class="info-detail">
+                <img src="image/fh.jpg" alt="资讯"/>
+                <p>迎新活动</p>
+            </div>
+        </li>
+        <li>
+            <div class="info-detail">
+                <img src="image/fh.jpg" alt="资讯"/>
+                <p>迎新活动</p>
+            </div>
+        </li>
+        <li>
+            <div class="info-detail">
+                <img src="image/fh.jpg" alt="资讯"/>
+                <p>迎新活动</p>
+            </div>
+        </li>
+        <li>
+            <div class="info-detail">
+                <img src="image/fh.jpg" alt="资讯"/>
+                <p>迎新活动</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="apply">
+    <a href="javascript:(0);">申请建站</a>
+</div>
+<div class="community">
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div>
+
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+    <div class="community-web">
+        <a href="javascript:(0);">
+            <img src="image/fh.jpg" alt="community-log"/>
+            <p>
+                <span>三明学院书法协会</span>
+                <span>2018-12-5</span>
+            </p>
+            <hr/>
+            <p class="createname">
+                创始人：张挺挺
+            </p>
+            <p class="introduction">
+                简 介:目的是允许一般的算法更改其行为，从而在将其应用到。。
+            </p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+</div>
+<div class="footer" style="float: left;">
+
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/slide.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+body{
+    background:rgba(242,242,242,1);
+}
+input,button{
+    border:0px;
+}
+.information_main{
+    width:853px;
+    /* height:1157px; */
+    margin:10px auto;
+    background:rgba(255,255,255,1);
+    opacity:1;
+}
+.info{
+    height: 53px;
+    border-bottom:1px solid rgba(112,112,112,1);
+}
+.info span:nth-child(1){
+    display: block;
+    width:97px;
+    height:16px;
+    margin-left:46px;
+    padding-top:20px;
+    float:left;
+    font-size:16px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:11px;
+    color:rgba(62,62,62,1);
+     /* letter-spacing:1px;  */
+    /* line-height: 53px; */
+    /* border:1px solid red; */
+}
+.info ul li{
+    float:right;
+    width:140px;
+    height:11px;
+    margin-top:23px;
+    margin-right: 46px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+    color:rgba(62,62,62,1);
+}
+.information_detail{
+    width: 762px;
+    float:left;
+    margin-top:18px;
+    margin-left:45px;
+    border-bottom:1px solid rgba(112,112,112,1);
+    /* border: 1px solid red;    */
+}
+.community_img{
+    float:left;
+}
+.community_img img{
+    width: 129px;
+    height: 169px;
+    
+}
+.info_content{
+    float:left;
+    margin-left: 13px;
+}
+.info_article p{
+    height:16px;
+    font-size:16px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:11px;
+    color:rgba(62,62,62,1);
+}
+.article {
+    width:619px;
+    height:195px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:16px;
+    color:rgba(62,62,62,1);
+    text-indent:2em;
+    letter-spacing:1px;
+    overflow-y:hidden;
+}
+#btns{
+    width:100px;
+    height:11px;
+    margin-top:10px;
+    margin-bottom: 20px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height: 11px;
+    color:rgba(51,119,236,1); 
+    background-color: white;
+}
+
+.info_follow{
+    margin-left:45px;
+    
+}
+.info_follow_img ul li{
+    float: left;
+    margin-top:10px;
+    width:120px;
+}
+.info_follow_img ul li img{
+   width: 20px;
+   height: 13px;
+}
+.info_follow_img ul li span{
+    display:inline-block;
+    width:34px;
+    height:11px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+    color:rgba(145,145,145,1);
+}
+.info_context{
+    width:667px;
+    height:32px;
+    border:0px;
+    border-radius:5px;
+    padding-left: 10px;
+    margin:10px 0px 10px 45px;
+    background-color: #F2F6FB;
+}
+#submit_btn{
+    width:83px;
+    height:32px;
+    background:rgba(51,119,236,1);
+    border-radius:2px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+}
+.information_comment{
+    margin-left: 45px;
+}
+.line{
+    width: 762px;  
+    border-bottom: 1px solid rgba(112,112,112,1);
+}
+.information_comment p span{
+    display:inline-block;
+    width:48px;
+    height:11px;
+    font-size:11px;
+    padding-right: 20px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+}
+.information_comment p span:nth-child(1){
+    color:rgba(51,119,236,1);
+   
+}
+.information_comment p span:nth-child(2){
+    color:rgba(62,62,62,1);
+}
+
+.user_phone{
+    width:36px;
+    height: 36px;
+    margin-top:10px;
+}
+.dianzan{
+    width: 14px;
+    height: 14px;
+}
+.information_comment ul li{
+    width: 762px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(112,112,112,1);
+}
+
+.comment_detail{
+    font-size:14px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    color:rgba(62,62,62,1);
+}
+.table_img{
+    width:45px;
+}
+.username{
+    width: 150px;
+}
+.date{
+    width:480px;
+    font-size:11px;
+}
+

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>资讯详情</title>
+    <link rel="stylesheet" href="http://localhost:8888/css/index.css" type="text/css"/>
+    <link rel="stylesheet" href="http://localhost:8888/css/header.css" type="text/css"/>
+    <link rel="stylesheet" href="http://localhost:8888/css/information.css" type="text/css"/>
+    <link rel="stylesheet" href="http://localhost:8888/css/sweet-alert.css" type="text/css"/>
+    <script type="text/javascript" src="http://localhost:8888/js/currentTime.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <img src="http://localhost:8888/image/logo.png" alt="logo" />
+    </div>
+    <div class="navigation-bar">
+        <ul class="nav-bar-ul">
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html">首页</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=1">学术类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=2">科技类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=3">思政类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=4">文艺类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=5">体育类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=6">实践类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=7">公益类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=8">班级类</a></li>
+            <li class="nav-bar-li"><a href="http://localhost:8888/index.html?id=9">同乡类</a></li>
+        </ul>
+    </div>
+    <div class="user">
+        <ul th:if="${session.username==null}">
+            <li ><a href="http://localhost:8888/login.html" id="username">登录</a></li>
+            <li ><a href="http://localhost:8888/register.html">注册</a></li>
+            <li id="divDate"></li>
+            <li>
+                <div id="divWeek"></div>
+                <div id="divTime"></div>
+            </li>
+        </ul>
+        <ul th:if="${session.username!=null}">
+            <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage==null}"><img src ="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+            <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage!=null}"><img th:src="${session.headimage}" style="width:35px;height:35px;margin-top:8px;" /></li>
+            <li ><a href="http://localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+            <li id="divDate"></li>
+            <li>
+                <div id="divWeek"></div>
+                <div id="divTime"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="information_main">
+     <div class="info">
+         <span th:text="${information.ititle}">校学生会纳新</span>
+         <ul>
+             <!--<li>截至时间：2018-08-08</li>-->
+             <li th:text="'发布时间：'+${information.idate}"></li>
+             <li th:text="'主办单位：'+${information.communityname}"></li>
+         </ul>
+     </div>
+     <div class="information_detail">
+         <div class="community_img">
+             <img src="http://localhost:8888/image/information_5.png" alt="社团logo"/>
+         </div>
+         <div class="info_content">
+            <p style="margin-bottom: 10px;" th:text="${information.communityname}">校学生会</p>
+            <div class="article" id="article" th:utext="${information.infoContent}">
+
+            </div>
+            <p id="btns" data_state="no_active">展开全部内容</p>
+         </div>
+     </div>
+     <div class="info_follow">
+           <div class="info_follow_img">
+               <ul>
+                   <li>
+                       <span th:text="${number}">1000</span>
+                       <img src="http://localhost:8888/image/information_1.png" alt="查看人数"/>
+                   </li>
+                    <li>
+                        <span>1000</span>
+                        <img src="http://localhost:8888/image/information_3.png" alt="查看人数" id="comentclick"/>
+                    </li>
+
+               </ul>
+           </div>
+     </div>
+     <div class="info_form">
+        <form method="POST">
+          <input type="text" placeholder="我也来说两句" name="comment" class="info_context">
+          <button id="submit_btn" type="button" onclick="addComment()">发表评论</button>
+        </form>
+     </div>
+     <div class="information_comment">
+         <p>
+             <span class="commentpart">精选评论</span>
+             <span class="commentall">全部评论</span>
+         </p>
+         <div class="line"></div>
+         <ul id="part">
+             <li th:each="item:${comment}">
+                 <table class="comment_detail">
+                     <tr>
+                         <td rowspan="2" class="table_img">
+                             <img th:src="'http://localhost:8888/'+${item.headImage}" alt="用户头像" class="user_phone"/>
+                         </td>
+                         <td class="username" th:text="${item.username}">zhagntinting</td>
+                         <td class="date" th:text="${item.commentdate}">2018-9-12</td>
+                         <td class="table_dianzan">
+                             <img src="http://localhost:8888/image/information_3.png" alt="点赞" class="dianzan" data_state="not_active"/>
+                             <a href="javascript:(0);" th:data_aid="${item.iid}" >点赞</a>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td colspan="2" th:text="${item.commentcontext}"></td>
+                     </tr>
+                 </table>
+             </li>
+         </ul>
+         <ul id="whole" style="display:none;">
+
+         </ul>
+     </div>
+</div>
+<div class="footer" style="float: left;"></div>
+<script src="http://localhost:8888/js/jquery-2.2.4.min.js"></script>
+<script src="http://localhost:8888/js/sweet-alert.min.js"></script>
+<script>
+    var btn = document.getElementById('btns');       
+    var obj = document.getElementById('article');     
+    var total_height = obj.scrollHeight;//文章总高度  
+    var show_height = 195;//定义原始显示高度
+        btn.onclick = function(){
+            if(total_height>show_height){
+                obj.style.height = total_height + 'px';
+                // $(this).attr("data_state",'active');
+                 $(this).html("收起全部内容")
+            }
+        }
+//        -----------------------------------
+    var aid = "[[${information.iId}]]";
+    function addComment(){
+        var date = $('#divDate').text();
+        // var username = "[[${session.username}]]";
+        var username = 'test';
+        var comment = $('input[name="comment"]').val();
+        // console.log(aid+'--'+date+'--'+username+'=='+comment);
+        if(username!='' && comment!=''){
+            $.ajax({
+                url:'http://localhost:8888/addinformationComment',
+                type:'post',
+                data:{"aid":aid,"date":date,"username":username,"comment":comment},
+                success:function(result){
+                    if(result.code == 200){
+                        swal("评论成功",'','success');
+                        setTimeout(function(){
+                            window.location.href="http://localhost:8888/information/"+aid;
+                        },1000);
+                    }else{
+                        swal('评论失败','','error');
+                    }
+                }
+            })
+        }else{
+            swal("请用户先登录",'','info')
+        }
+    }
+    $('.commentall').click(function() {
+        $(this).css('color','rgba(51,119,236,1)');
+        $('.commentpart').css('color','rgba(62,62,62,1)');
+        var aid = "[[${information.iId}]]";
+        // console.log(aid);
+        $.ajax({
+            url:'http://localhost:8888/getAllinformationcomment',
+            type:'post',
+            data:{"aid":aid},
+            success:function(result){
+                // console.log(result);
+                Fendering(result.extend.list);
+            }
+        });
+    });
+    function Fendering(item){
+        var datastr = '';
+        $.each(item,function (i,j) {
+            datastr +="<li>";
+            datastr +="<table class='comment_detail'>";
+            datastr +="<tr>";
+            datastr +="<td rowspan='2' class='table_img'>";
+            datastr +="<img src='http://localhost:8888/"+j.headImage+"' alt='用户头像' class='user_phone'/>";
+            datastr +="</td>";
+            datastr +="<td class='username' >"+j.username+"</td>";
+            datastr +="<td class='date' >"+j.commentdate+"</td>";
+            datastr +="<td class='table_dianzan'>";
+            datastr +="<img src='http://localhost:8888/image/information_3.png' alt='点赞' class='dianzan dianzan2' data_state='not_active'/>";
+            datastr +="<a href='javascript:(0);' >点赞</a>";
+            datastr +="</td>";
+            datastr +="</tr>";
+            datastr +="<tr>";
+            datastr +="<td colspan='2'>"+j.commentcontext+"</td>";
+            datastr +="</tr>";
+            datastr +="</table>";
+            datastr +="</li>";
+        });
+        $('#whole').append(datastr);
+        $('#whole').css("display","block");
+        $('#part').css("display","none");
+    };
+    $('#comentclick').click(function(){
+        var data_state = $(this).attr("data_state")
+        if(data_state == 'not_active'){
+            $(this).attr('src','http://localhost:8888/image/zan.png');
+            $(this).attr('data_state','active');
+        }else{
+            $(this).attr('src','http://localhost:8888/image/information_3.png');
+            $(this).attr('data_state','not_active');
+        }
+    });
+    $('.dianzan').click(function(){
+        //data_state="not_active"
+        var data_state = $(this).attr("data_state")
+        if(data_state == 'not_active'){
+            $(this).attr('src','http://localhost:8888/image/zan.png');
+            $(this).attr('data_state','active');
+        }else{
+            $(this).attr('src','http://localhost:8888/image/information_3.png');
+            $(this).attr('data_state','not_active');
+        }
+    })
+    $("#whole").on("click",".dianzan2",function () {
+        var data_state = $(this).attr("data_state")
+        if(data_state == 'not_active'){
+            $(this).attr('src','http://localhost:8888/image/zan.png');
+            $(this).attr('data_state','active');
+        }else{
+            $(this).attr('src','http://localhost:8888/image/information_3.png');
+            $(this).attr('data_state','not_active');
+        }
+    });
+    $('.commentpart').click(function () {
+        $('#whole').css("display","none");
+        $('#part').css("display","block");
+        $(this).css('color','rgba(51,119,236,1)');
+        $('.commentall').css('color','rgba(62,62,62,1)');
+    });
+</script>
+</body>
+</html>

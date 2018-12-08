@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.ForumMapper">
+     <select id="getOneById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.Forum">
+        SELECT t_forum.*,t_community_home.communityname,t_ordinary_user.username
+        FROM t_forum
+        LEFT JOIN t_community_home
+        ON t_forum.cid = t_community_home.id
+        LEFT JOIN t_ordinary_user
+        ON t_forum.cid = t_ordinary_user.uid
+        WHERE t_forum.fid =  #{fid}
+     </select>
+     <select id="getAll" resultType="com.example.communitywebsite.bean.Forum">
+        SELECT t_forum.*,t_community_home.communityname,t_ordinary_user.username
+        FROM t_forum
+        LEFT JOIN t_community_home
+        ON t_forum.cid = t_community_home.id
+        LEFT JOIN t_ordinary_user
+        ON t_forum.cid = t_ordinary_user.uid
+        ORDER BY fcreatedate DESC
+     </select>
+    <select id="getFiveActivity" resultType="com.example.communitywebsite.bean.Forum">
+        SELECT t_forum.*,t_community_home.communityname,t_ordinary_user.username
+        FROM t_forum
+        LEFT JOIN t_community_home
+        ON t_forum.cid = t_community_home.id
+        LEFT JOIN t_ordinary_user
+        ON t_forum.cid = t_ordinary_user.uid
+        ORDER BY fcreatedate DESC  LIMIT 5
+     </select>
+</mapper>

@@ -1,0 +1,325 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(242,242,242,1);
+}
+button:focus{
+    outline: 0;
+}
+main{
+    width: 1209px;
+    /* height: 534px; */
+    margin: 10px auto;
+}
+.main-left{
+    width: 280px;
+    height: 100%;
+    margin-left:143px;
+    background-color: #ffffff;
+    float: left;
+}
+.main-right{
+    width: 920px;
+    height: 534px;
+    margin-left: 6px;
+    background-color: #ffffff;
+    float:left;
+}
+.main-left>div{
+    width: 280px;
+    border-bottom:1px solid rgba(145,145,145,1);
+}
+.user-image{
+    width: 280px;
+    height: 250px;
+}
+.user-image .left-logo{
+    width: 127px;
+    margin: 29px auto;
+    text-align: center;
+}
+.user-image .userimg{
+    width: 92px;
+    height: 92px;
+    border-radius:50%;
+    margin: 29px auto 0;
+}
+.user-image .userimg img{
+    width: 92px;
+    height: 92px;
+    border-radius:50%;
+}
+.user-image .username{
+    width: 100%;
+    margin-top:16px;
+    text-align: center;
+}
+.main-left ul{
+    width: 280px;
+    list-style: none;
+}
+.main-left ul>li{
+    width: 280px;
+    height: 40px;
+    line-height:40px;
+    /* /background-color: rgba(239,239,239,1); */
+    /* margin:1px auto 1px -40px; */
+    padding:13px auto 12px 47px;
+}
+.main-left ul>li>a{
+    text-decoration: none;
+    color: #787878;
+    margin:13px auto 12px 47px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:400;
+    line-height:19px;
+    color:rgba(120,120,120,1);
+}
+.main-right{
+    background-color: rgba(242,242,242,1);
+}
+
+.main-right .right-top{
+    height: 60px;
+    margin: 0 0 2px 0;
+    background-color: #fff;
+}
+.user-out ul>li>a{
+    font-size:10px;
+    font-family:Source Han Sans CN;
+    font-weight:400;
+    line-height:17px;
+    color:rgba(62,62,62,1);
+}
+.main-right{
+    width:654px;
+    height:532px;
+    background:rgba(255,255,255,1);
+}
+.right-top{
+    border-bottom: 1px solid rgba(145,145,145,1);
+}
+.right-top p{
+    padding-left: 20px;
+    font-size:15px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:60px;
+    color:rgba(62,62,62,1);
+}
+.right-info p{
+    font-size:15px;
+    padding-left: 20px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:60px;
+    color:rgba(62,62,62,1);
+}
+
+.phone_spance{
+    width:92px;
+    height:92px;
+    float:left;
+    background:rgba(239,239,239,1);
+    border:1px solid rgba(112,112,112,1);
+    border-radius:50px;
+    margin-left: 46px;
+}
+.jiahao{
+    margin-top:30px;
+    margin-left:30px;
+}
+.default_phone{
+    margin-left:41px;
+    float:left;
+}
+.default_phone p:nth-child(1){
+    height:40px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:20px;
+    color:rgba(145,145,145,1);
+}
+.default{
+    width:50px;
+    height: 50px;
+    margin-right: 20px;
+}
+.phone_info{
+    float:left;
+    margin-top:23px;
+    margin-left:46px;
+}
+.phone_info span{
+    display: inline-block;
+    width:136px;
+    height:21px;
+    font-size:9px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+    color:rgba(120,120,120,1);
+}
+.user_info{
+    width:100%;
+    margin-top:25px;
+    float: left;
+    margin-left:46px;
+}
+.user_info table{
+    vertical-align: middle;
+}
+.info{
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:11px;
+    color:rgba(62,62,62,1);
+    width:80px;
+    height: 30px;
+}
+.input_text{
+    width:195px;
+    height:20px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border:0px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+    color:rgba(62,62,62,1);
+    background:#EFEFEF;
+}
+.input_text:focus{
+    background-color: #ffffff;
+    outline-color: #DE333B;
+    color:red;
+}
+input:focus::-webkit-input-placeholder { /* WebKit browsers获取焦点后placeholder的颜色改变 */
+    color: red;
+}
+.update_btn{
+    border:0px;
+    width:30px;
+    height:11px;
+    font-size:11px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    line-height:11px;
+    color:rgba(222,51,59,1);
+    background-color: white;
+}
+/* 签名简介的样式 */
+.input_text1{
+    border:0px;
+    width:465px;
+    height:23px;
+    background:rgba(239,239,239,1);
+    padding-left:20px;
+    font-size:9px;
+    font-family:Source Han Sans CN;
+    font-weight:400;
+    line-height:11px;
+    color:rgba(145,145,145,1);
+}
+.submit{
+    width:56px;
+    height:19px;
+    background:rgba(246,185,64,1);
+    line-height: 19px;
+    border-radius:3px;
+    border:0px;
+    font-size:9px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    float: right;
+    margin-right: 85px;
+    margin-top:10px;
+}
+.comm{
+    width: 655px;
+    /* height:250px; */
+    /*border:1px solid red;*/
+    margin-left:425px;
+    margin-top:15px;
+    float:left;
+    background-color: #ffffff;
+}
+.comm_div{
+    margin:15px;
+    /* border:1px solid red; */
+    background:#EFEFEF;
+    float:left;
+    width: 45%;
+}
+.comm_table{
+    text-align: center;
+    vertical-align: middle;
+    font-size:9px;
+    font-family:Source Han Sans CN;
+    font-weight:500;
+}
+.comm_table img{
+    width:92px;
+    height:92px;
+}
+.comm_table tr td:nth-child(2){
+    width:150px;
+}
+.comm_title{
+    padding-left: 20px;
+    font-size:16px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:50px;
+    text-align: center;
+    color:rgba(62,62,62,1);
+}
+.comm_tongguo{
+    padding-left: 30px;
+    font-size:14px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:30px;
+    color:rgba(62,62,62,1);
+}
+.tongguo{
+    width:90%;
+    /*height:50px;*/
+    border:1px solid gainsboro;
+    margin:5px auto;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    color:rgba(62,62,62,1);
+    background:#EFEFEF;
+}
+.comm_text{
+    padding-left:15px;
+    font-size:13px;
+    font-family:Source Han Sans CN;
+    font-weight:bold;
+    line-height:20px;
+    color:rgba(62,62,62,1);
+}
+.jianzhan{
+    margin-left:15px;
+    font-size: 13px;
+}
+.date{
+    float: right;
+    margin-right: 20px;
+    font-size: 13px;
+}
+.comm_data{
+    text-align: right;
+    margin-right:20px;
+    font-size: 13px;
+}
+.user-info li:hover{
+    text-align: center;
+    background: rgba(239,239,239,1);
+}

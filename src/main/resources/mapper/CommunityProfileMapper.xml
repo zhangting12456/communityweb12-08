@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.CommunityProfileMapper">
+    <insert id="addCommunityProfile" parameterType="com.example.communitywebsite.bean.CommunityProfile">
+        INSERT  INTO  t_community_profile
+         (cid,historytitle,historycontext)
+          VALUES (#{cid},#{historytitle},#{historycontext})
+    </insert>
+</mapper>

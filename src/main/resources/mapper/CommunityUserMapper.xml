@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.CommunityUserMapper">
+    <select id="getCommunityByName" parameterType="String" resultMap="ResultMap">
+        SELECT t_community_users.*,t_community_home.*,t_community_home.communityname
+        FROM t_community_users
+        LEFT JOIN t_community_home
+        ON t_community_users.cid = t_community_home.id
+        WHERE t_community_users.uid =(SELECT uid FROM t_ordinary_user where username = #{username})
+    </select>
+    <resultMap id="ResultMap" type="com.example.communitywebsite.bean.CommunityUser">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="cid" property="cid"/>
+        <association property="community" javaType="com.example.communitywebsite.bean.CommunityHome">
+            <id column="pId" property="pid"/>
+            <result column="communityname" property="communityname"/>
+            <result column="createname" property="createname"/>
+            <result column="communityurl" property="communityurl"/>
+            <result column="createdate" property="createdate"/>
+            <result column="logo" property="logo"/>
+            <result column="classification" property="classification"/>
+            <result column="modula" property="modula"/>
+            <result column="template" property="template"/>
+        </association>
+    </resultMap>
+</mapper>

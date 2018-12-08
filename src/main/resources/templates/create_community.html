@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>创建社团</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/create_community.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="css/sweet-alert.css"/>
+    <script type="text/javascript" src="js/currentTime.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header_title">
+                <div class="logo">
+                    <img src="image/logo.png" alt="logo"/>
+                </div>
+                <div class="navigation-bar">
+                    <ul class="nav-bar-ul">
+                        <li class="nav-bar-li"><a href="javascript:(0);">首页</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">学术类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">科技类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">文艺类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">体育类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">实践类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">公益类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">班级类</a></li>
+                        <li class="nav-bar-li"><a href="javascript:(0);">同乡类</a></li>
+                    </ul>
+                </div>
+                <div class="user">
+                    <ul th:if="${session.username==null}">
+                        <li ><a href="login.html" id="username">登录</a></li>
+                        <li ><a href="register.html">注册</a></li>
+                        <li id="divDate"></li>
+                        <li>
+                            <div id="divWeek"></div>
+                            <div id="divTime"></div>
+                        </li>
+                    </ul>
+                    <ul th:if="${session.username!=null}">
+                        <li style="margin-left:-10px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+                        <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                        <li id="divDate"></li>
+                        <li>
+                            <div id="divWeek"></div>
+                            <div id="divTime"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="create_left">
+           <div class="create_phone">
+                <div>
+                    <img src="image/logo01.png" alt="log-logo"/>
+                </div>
+                <div>
+                    <img th:src="${user.headImage}" src="image/default01.png" alt="用户头像"/>
+                </div>
+                <div>
+                    <p th:text="${user.username}">ZHSAFSA</p>
+                </div>
+           </div>
+           <div class="create_text">
+               <ul>
+                   <li th:text="${user.username}">张某某</li>
+                   <li><a href="javascript:(0);">建站申请</a></li>
+                   <li><a href="javascript:(0);">建立社团</a></li>
+               </ul>
+           </div>
+           <div class="create_text">
+                <ul>
+                    <li><a href="javascript:(0);">个人资料</a></li>
+                    <li><a href="javascript:(0);">我的社团</a></li>
+                    <li><a href="javascript:(0);">关注的社团</a></li>
+                </ul>
+           </div>
+           <div class="create_text">
+                <ul>
+                    <li><a href="userout">退出</a></li>
+                </ul>
+           </div>
+        </div>
+        <div class="create_right">
+            <div class="right_text">
+                <h5>建立社团网站</h5>
+            </div>
+            <div class="right_form">
+                <h5>上传社团LOGO</h5>
+                <form id="createcomm_form" method="POST">
+                    <table class="community_table">
+                        <tr>
+                            <td>
+                                <div class="community_logo">
+                                    <img src="image/add01.png" id="upload_logo"/>
+                                    <!-- <button id="upload_logo" type="button"></button> -->
+                                    <input type="file" name="logo" hidden id="logo_text">
+                                </div>
+                            </td>
+                            <td class="prompt_info">
+                                <div class="community_logo">
+                                    <img src="" id="tijiao_logo"/>
+                                    <!-- <button type="button" id="ss">上传社团LOGO</button> -->
+                                </div>
+                                <!-- <p>
+                                    <img src="image/mark2.png">
+                                     LOGO尺寸为500*500px，格式为png或jpg格式。
+                                </p> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;社团名称:
+                            </td>
+                            <td>
+                                <input type="text" name="communityname" placeholder="社团名称不能超过8个字" class="ordinary_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;创建人:
+                            </td>
+                            <td>
+                                <input type="text" name="createname" placeholder="请输入姓名" class="ordinary_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;社团URL:
+                            </td>
+                            <td>
+                                <input type="text" name="communityurl" placeholder="社团URL为4到6位小写字符" class="ordinary_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;创建时间:
+                            </td>
+                            <td>
+                                <input type="text" name="createdate" placeholder="点击当前时间" class="ordinary_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;类型:
+                            </td>
+                            <td>
+                                <div class="select_div">
+                                    <select name="classification">
+                                        <option value="思政类">思政类</option>
+                                        <option value="学术类">学术类</option>
+                                        <option value="文艺类">文艺类</option>
+                                        <option value="科技类">科技类</option>
+                                        <option value="体育类">体育类</option>
+                                        <option value="实践类">实践类</option>
+                                        <option value="公益类">公益类</option>
+                                        <option value="班级类">班级类</option>
+                                        <option value="同乡类">同乡类</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;所选模块:
+                            </td>
+                            <td>
+                                <!-- 活动,资讯,论坛,成员,社团简介,资料下载 -->
+                                <div class="RadioStyle">
+                                    <div class="Block PaddingL">
+                                        <input type="checkbox" id="love1" name="modula" value="活动"/>
+                                        <label for="love1" style="margin-left:15px;">活动</label>
+                                        <input type="checkbox" id="love2" name="modula" value="咨询"/>
+                                        <label for="love2">资讯</label>
+                                        <input type="checkbox" id="love3" name="modula" value="论坛"/>
+                                        <label for="love3">论坛</label>
+                                        <input type="checkbox" id="love4" name="modula"value="成员"/>
+                                        <label for="love4">成员</label>
+                                        <input type="checkbox" id="love7" name="modula"  value="留言"/>
+                                        <label for="love7">留言</label>
+                                        <input type="checkbox" id="love5" name="modula" value="社团简介"/>
+                                        <label for="love5" style="width:48px;">社团简介</label>
+                                        <input type="checkbox" id="love6" name="modula" value="资料下载"/>
+                                        <label for="love6" style="width:48px;">资料下载</label>    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;网站模板:
+                            </td>
+                            <td class="template_td">
+                                 <input type="radio" name="template" id="template1" value="1"/>
+                                 <label for="template1">
+                                    <div class="template_block">
+                                        <div>
+                                            <img src="image/fh.jpg" alt="logo" class="template_phone"> 
+                                        </div>
+                                        <div>
+                                             网站模板1
+                                        </div>
+                                    </div>
+                                </label> 
+                                <input type="radio" name="template" id="template2" value="2"/>
+                                <label for="template2">
+                                   <div class="template_block">
+                                       <div>
+                                           <img src="image/fh.jpg" alt="logo" class="template_phone" >
+                                       </div>
+                                       <div>
+                                            网站模板2
+                                       </div>
+                                   </div>
+                               </label> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;签名:
+                            </td>
+                            <td>
+                                <input type="text" name="historytitle" placeholder="不超过20汉字或25个字符" class="long_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>*</span>&nbsp;&nbsp;历史简介:
+                            </td>
+                            <td>
+                                <input type="text" name="historycontext" placeholder=""class="long_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="button_td">
+                                <button type="button" id="produce">生成网站</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>      
+        </div>
+    </main>
+    <footer style="height: 100px;width:100%;background-color: rgba(62,62,62,1);float:left;">
+    </footer>
+</body>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/sweet-alert.min.js"></script>
+<script>
+    $('#upload_logo').click(function(){
+        $('#logo_text').click();
+    });
+    $('#logo_text').change(function () {
+        show(this);
+    });
+    //页面获取头像
+    function show(f) {
+        var fr = new FileReader();//创建文件读取对象
+        var files = f.files[0];//获取file组件中的文件
+        fr.readAsDataURL(files);//文件读取装换为base64类型
+        fr.onloadend = function() {
+            //加载完毕之后获取结果赋值给img
+            $("#tijiao_logo").attr("src",this.result);
+        }
+    }
+    $('#tijiao').click(function(){
+        alert($('#tijiao_logo').attr('src'));
+    });
+    $('#produce').click(function(){
+        // var btn=$(this);
+        var username="[[${session.username}]]";
+        // var protraitPath=$('#logo_text');
+        var communityname = $('input[name="communityname"]');
+        var createname = $('input[name="createname"]');
+        var communityurl = $('input[name="communityurl"]');
+        var classification = $('select[name="classification"]');
+        var template = $('input[name="template"]:checked');
+        var historytitle = $('input[name="historytitle"]');
+        var historycontext = $('input[name="communitycontext"]');
+        var form=new FormData(document.getElementById('createcomm_form'));
+        var modulastr = "";
+        $('input[name="modula"]:checked').each(function(){
+            modulastr += $(this).val()+",";
+        });
+        console.log(modulastr);
+        form.append("username",username);
+        form.append("communityname",communityname);
+        form.append("createname",createname);
+        form.append("communityurl",communityurl);
+        form.append("classification",classification);
+        form.append("modulaData",modulastr.substring(0, modulastr.length-1));
+        form.append("template",template);
+        form.append("historytitle",historytitle);
+        form.append("historycontext",historycontext);
+        $.ajax({
+            url:"/createcommunity",
+            type:"post",
+            // async : false,
+            cache : false,
+            processData:false,
+            contentType:false,
+            data:form,
+            success:function (result) {
+                if(result.code==200){
+                    swal(result.extend.info,"","success");
+                }else{
+                    swal(result.extend.info,"","error");
+                }
+
+            }
+        });
+    });
+</script>
+</html>

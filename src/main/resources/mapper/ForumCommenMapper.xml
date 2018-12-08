@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.ForumCommenMapper">
+     <select id="getAllById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.ForumComment">
+         SELECT t_forum_comment.*,t_forum.forumtitle,t_ordinary_user.username FROM t_forum_comment
+        LEFT JOIN t_forum
+        ON t_forum_comment.fid = t_forum.fid
+        LEFT JOIN t_ordinary_user
+        ON t_forum_comment.uid = t_ordinary_user.uid
+        WHERE t_forum_comment.fid = #{fid}
+        ORDER BY date DESC
+     </select>
+    <select id="getFiveById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.ForumComment">
+        SELECT t_forum_comment.*,t_forum.forumtitle,t_ordinary_user.username FROM t_forum_comment
+        LEFT JOIN t_forum
+        ON t_forum_comment.fid = t_forum.fid
+        LEFT JOIN t_ordinary_user
+        ON t_forum_comment.uid = t_ordinary_user.uid
+        WHERE t_forum_comment.fid = #{fid}
+        ORDER BY date DESC
+        LIMIT 5
+    </select>
+</mapper>

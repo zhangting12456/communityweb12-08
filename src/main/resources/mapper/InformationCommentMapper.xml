@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.InformationCommentMapper">
+     <select id="getAllById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.InformationComment">
+         SELECT t_comment.*,t_information.Ititle,t_ordinary_user.username ,t_ordinary_user.HeadImage FROM t_comment
+        LEFT JOIN t_information
+        ON t_comment.iid = t_information.iId
+        LEFT JOIN t_ordinary_user
+        ON t_comment.uid = t_ordinary_user.uid
+        WHERE t_comment.iid = #{id}
+        ORDER BY commentdate DESC
+     </select>
+    <select id="getFiveById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.InformationComment">
+         SELECT t_comment.*,t_information.Ititle,t_ordinary_user.username,t_ordinary_user.HeadImage FROM t_comment
+        LEFT JOIN t_information
+        ON t_comment.iid = t_information.iId
+        LEFT JOIN t_ordinary_user
+        ON t_comment.uid = t_ordinary_user.uid
+        WHERE t_comment.iid = #{id}
+        ORDER BY commentdate DESC
+        LIMIT 5
+     </select>
+    <insert id="addComment" parameterType="com.example.communitywebsite.bean.InformationComment">
+        INSERT INTO  t_comment (iid,commentcontext,commentdate,uid) VALUES (#{iid},#{commentcontext},#{commentdate},#{uid});
+    </insert>
+    <select id="countByIid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT  count(iid) FROM t_comment WHERE  iid = #{iid}
+    </select>
+</mapper>

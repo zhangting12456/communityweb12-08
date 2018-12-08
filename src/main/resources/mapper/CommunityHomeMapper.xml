@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.CommunityHomeMapper">
+    <select id="getAll" resultMap="ZtResultMap">
+        SELECT t_community_home.*,t_community_profile.* FROM t_community_home
+         LEFT JOIN t_community_profile
+         ON t_community_home.id = t_community_profile.cid;
+    </select>
+    <resultMap id="ZtResultMap" type="com.example.communitywebsite.bean.CommunityHome">
+        <id column="id" property="id"/>
+        <result column="communityname" property="communityname"/>
+        <result column="createname" property="createname"/>
+        <result column="communityurl" property="communityurl"/>
+        <result column="createdate" property="createdate"/>
+        <result column="logo" property="logo"/>
+        <result column="classification" property="classification"/>
+        <result column="modula" property="modula"/>
+        <result column="template" property="template"/>
+        <association property="profile" javaType="com.example.communitywebsite.bean.CommunityProfile">
+            <id column="pId" property="pid"/>
+            <result column="cId" property="cid"/>
+            <result column="historytitle" property="historytitle"/>
+            <result column="historycontext" property="historycontext"/>
+        </association>
+    </resultMap>
+    <select id="getOneById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.CommunityHome">
+         SELECT  * FROM t_community_home WHERE id = #{id}
+    </select>
+    <select id="getCommHomeProfile" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.CommunityHome">
+         SELECT t_community_home.*,t_community_profile.* FROM t_community_home
+         LEFT JOIN t_community_profile
+         ON t_community_home.id = t_community_profile.cid
+         WHERE t_community_home.id=#{id};
+    </select>
+    <select id="getAllByClass" parameterType="String" resultType="com.example.communitywebsite.bean.CommunityHome">
+         SELECT  * FROM t_community_home WHERE classification = #{classification}
+    </select>
+    <select id="getOneByCommunity" parameterType="String" resultType="com.example.communitywebsite.bean.CommunityHome">
+         SELECT  * FROM t_community_home WHERE communityname = #{communityname}
+    </select>
+    <insert id="addCommunity" parameterType="com.example.communitywebsite.bean.CommunityHome">
+        INSERT  INTO  t_community_home (communityname, createname, communityurl, createdate, classification, modula, logo, template)
+        VALUES (#{communityname},#{createname}, #{communityurl}, #{createdate}, #{classification}, #{modula}, #{logo}, #{template})
+    </insert>
+    <select id="countByCommunityname" parameterType="String" resultType="java.lang.Integer">
+        SELECT COUNT(communityname) FROM t_community_home WHERE communityname = #{communityname}
+    </select>
+    <select id="countByCommunityurl" parameterType="String" resultType="java.lang.Integer">
+        SELECT COUNT(communityname) FROM t_community_home WHERE communityurl=#{communityurl}
+    </select>
+</mapper>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="http://localhost:8888/css/index.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="http://localhost:8888/css/style.css">
+    <link rel="stylesheet" href="http://localhost:8888/css/sweet-alert.css">
+    <link rel="stylesheet" href="http://localhost:8888/css/header.css" type="text/css"/>
+    <link rel="stylesheet" href="http://localhost:8888/css/xcConfirm.css" type="text/css"/>
+    <script src="http://localhost:8888/js/currentTime.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+            var odiv = document.getElementById('div1');
+            var oul = odiv.getElementsByTagName('ul')[0];
+            var ali = oul.getElementsByTagName('li');
+            var spa = -2;
+            oul.innerHTML=oul.innerHTML+oul.innerHTML;
+            oul.style.width=ali[0].offsetWidth*ali.length+'px';
+            function move(){
+                if(oul.offsetLeft<-oul.offsetWidth/2){
+                    oul.style.left='0';
+                }
+                if(oul.offsetLeft>0){
+                    oul.style.left=-oul.offsetWidth/2+'px'
+                }
+                oul.style.left=oul.offsetLeft+spa+'px';
+            }
+            var timer = setInterval(move,30)
+
+            odiv.onmousemove=function(){clearInterval(timer);}
+            odiv.onmouseout=function(){timer = setInterval(move,30)};
+            document.getElementsByTagName('a')[0].onclick = function(){
+                spa=-2;
+            }
+            document.getElementsByTagName('a')[1].onclick = function(){
+                spa=2;
+            }
+            // initCommunity();
+        }
+    </script>
+</head>
+<body>
+<div class="header">
+    <div class="header_title">
+        <div class="logo">
+            <img src="image/logo.png" alt="logo"/>
+        </div>
+        <div class="navigation-bar">
+            <ul class="nav-bar-ul">
+                <li class="nav-bar-li"><a href="index.html">首页</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=1">学术类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=2">科技类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=3">思政类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=4">文艺类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=5">体育类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=6">实践类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=7">公益类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=8">班级类</a></li>
+                <li class="nav-bar-li"><a href="index.html?id=9">同乡类</a></li>
+            </ul>
+        </div>
+        <div class="user">
+            <ul th:if="${session.username==null}">
+                <li ><a href="login.html" id="username">登录</a></li>
+                <li ><a href="register.html">注册</a></li>
+                <li id="divDate"></li>
+                <li>
+                    <div id="divWeek"></div>
+                    <div id="divTime"></div>
+                </li>
+            </ul>
+            <ul th:if="${session.username!=null}">
+                <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage==null}"><img src ="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+                <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage!=null}"><img th:src="${session.headimage}" style="width:35px;height:35px;margin-top:8px;" /></li>
+                <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                <li id="divDate"></li>
+                <li>
+                    <div id="divWeek"></div>
+                    <div id="divTime"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="activity">
+    <div id="slider-wrap">
+            <ul id="slider">
+                <li data-color="#1abc9c" th:each="item:${activities}">
+                    <a th:href="'http://localhost:8888/activity_detail/'+${item.aid}">
+                         <div>
+                            <h3>Slide #1</h3>
+                            <span>Sub-title #1</span>
+                        </div>
+                        <i class="fa fa-image"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="btns" id="next"><i class="fa fa-arrow-right"></i></div>
+            <div class="btns" id="previous"><i class="fa fa-arrow-left"></i></div>
+            <div id="counter"></div>            
+            <div id="pagination-wrap">
+            <ul>
+            </ul>
+            </div>   
+        </div> 
+    </div>
+</div>
+<div class="information" id="div1">
+    <ul>
+        <li th:each="item:${information}">
+            <div class="info-detail">
+                <a th:href="'http://localhost:8888/information/'+${item.iId}">
+                    <img src="image/fh.jpg" alt="资讯"/>
+                    <p th:text="${item.ititle}">迎新活动</p>
+                </a>      
+            </div>
+        </li>
+        <!--<li>-->
+            <!--<div class="info-detail">-->
+                <!--<a href="information.html">-->
+                    <!--<img src="image/fh.jpg" alt="资讯"/>-->
+                    <!--<p>迎新活动</p>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<div class="info-detail">-->
+                <!--<a href="information.html">-->
+                    <!--<img src="image/fh.jpg" alt="资讯"/>-->
+                    <!--<p>迎新活动</p>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<div class="info-detail">-->
+                <!--<a href="information.html">-->
+                    <!--<img src="image/fh.jpg" alt="资讯"/>-->
+                    <!--<p>迎新活动</p>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+    </ul>
+</div>
+<div class="apply">
+    <a href="javascript:void(0);" class="sav">申请建站</a>
+</div>
+<div class="community" th:each="item:${community}">
+    <div class="community-web">
+        <a href="javascript:(0);" th:href="${item.communityurl}">
+            <img src="" alt="community-log" th:src="'http://localhost:8080'+${item.logo}"/>
+            <p>
+                <span th:text="${item.communityname}">三明学院</span>
+            </p>
+            <span class="time"  th:text="${item.createdate}">2018-12-5</span>
+            <hr/>
+            <p class="createname" th:text="'创始人：'+${item.createname}"></p>
+            <p class="introduction" th:if="${item.profile!=null}" th:text="'简 介:'+${item.profile.historytitle}">
+             </p>
+            <p class="introduction" th:if="${item.profile==null}" th:text="'简 介:无'"></p>
+        </a>
+        <button class="join">
+            + 加入
+        </button>
+    </div>
+</div>
+<div class="footer" style="float: left;">
+</div>
+<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="js/slide.js"></script>
+<script type="text/javascript" src="js/xcConfirm.js"></script>
+<script src="js/sweet-alert.min.js"></script>
+<script>
+    <!--申请建站的js-->
+    $('.sav').click(function(){
+        if($('#username').text()!='登录'){
+            var txt=  "请输入申请原因";
+            window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.input,{
+                onOk:function(v){
+                    console.log(v);
+                    if(v!=''){
+                        addApply(v);
+                    }else{
+                        var txt=  "申请理由不能为空，请重新填写";
+                        window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning);
+                    }
+                }
+            });
+        }else{
+            var txt=  "您还未登录，请先登录";
+            window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.warning);
+        }
+    });
+    function addApply(item) {
+        $.ajax({
+            url:'addapply',
+            type:'POST',
+            data:{'applyReason':item,'date':$('#divDate').text()},
+            success:function(result){
+                if(result.code==200){
+                    var txt=  "申请发送成功，请等待审核结果";
+                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.success);
+                }else{
+                    var txt=  "申请发送成功，请等待审核结果";
+                    window.wxc.xcConfirm(txt, window.wxc.xcConfirm.typeEnum.error);
+                }
+            },
+        });
+    }
+</script>
+</body>
+</html>

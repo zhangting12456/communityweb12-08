@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.InformationMapper">
+     <select id="getOneById" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.Information">
+         SELECT t_information.*,t_community_home.communityname FROM t_information
+        LEFT JOIN t_community_home
+        ON t_information.cid = t_community_home.id
+        WHERE t_information.iId  = #{iId}
+     </select>
+     <select id="getAll"  resultType="com.example.communitywebsite.bean.Information">
+        SELECT t_information.*,t_community_home.communityname FROM t_information
+        LEFT JOIN t_community_home
+        ON t_information.cid = t_community_home.id
+        ORDER BY startdate DESC ;
+     </select>
+    <select id="getFiveInformation"  resultType="com.example.communitywebsite.bean.Information">
+       SELECT t_information.*,t_community_home.communityname FROM t_information
+        LEFT JOIN t_community_home
+        ON t_information.cid = t_community_home.id
+        ORDER BY Idate DESC  LIMIT 5;
+     </select>
+</mapper>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>个人信息</title>
+    <link rel="stylesheet" type="text/css" href="css/user_detail.css"/>
+    <link rel="stylesheet" type="text/css" href="css/header.css"/>
+    <script type="text/javascript" src="js/currentTime.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header_title">
+                <div class="logo">
+                    <img src="image/logo.png" alt="logo"/>
+                </div>
+                <div class="navigation-bar">
+                    <ul class="nav-bar-ul">
+                        <li class="nav-bar-li"><a href="index.html">首页</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=1">学术类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=2">科技类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=3">思政类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=4">文艺类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=5">体育类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=6">实践类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=7">公益类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=8">班级类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=9">同乡类</a></li>
+                    </ul>
+                </div>
+                <div class="user">
+                    <ul th:if="${session.username==null}">
+                        <li ><a href="login.html" id="username">登录</a></li>
+                        <li ><a href="register.html">注册</a></li>
+                        <li id="divDate"></li>
+                        <li>
+                            <div id="divWeek"></div>
+                            <div id="divTime"></div>
+                        </li>
+                    </ul>
+                    <ul th:if="${session.username!=null}">
+                        <li style="margin-left:-10px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+                        <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                        <li id="divDate"></li>
+                        <li>
+                            <div id="divWeek"></div>
+                            <div id="divTime"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-left">
+            <div class="user-image">
+                <div class="left-logo"><img src="image/组 9.png" alt=""></div>
+                <div class="userimg" th:if="${user.HeadImage==null}"><img src="image/default01.png" alt=""></div>
+                <div class="userimg" th:if="${user.HeadImage!=null}"><img src="image/default01.png" alt="" th:src="${user.HeadImage}"></div>
+                <div class="username"><span th:text="${user.username}">ZHANTING</span></div>
+            </div>
+            <div class="user-list">
+                <ul>
+                    <li><a href="javascript:void(0);" th:text="${user.username}">张某某</a></li>
+                </ul>
+            </div>
+            <div class="user-info">
+                <ul>
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#join_community">我的社团</a></li>
+                    <!--<li><a href="#">关注的社团</a></li>-->
+                    <li><a href="#apply_div">我的申请</a></li>
+                </ul>
+            </div>
+            <div class="user-out">
+                <ul>
+                    <li><a href="#userout">退出</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-right">
+            <div class="right-top">
+                <p>个人资料</p>
+            </div>
+            <div class="right-buttom">
+                <div class="right-info">
+                    <p>个人资料</p>
+                </div>
+                <div class="user_phone">
+                    <!--<form id="updateImg_form">-->
+                        <div class="phone_spance">
+                            <img src="image/jiahao.png" alt="头像" class="jiahao" id="portraitPath_btn"/>
+                            <img src="image/default01.png" alt="头像" id="user_phone" hidden="hidden" />
+                        </div>
+                    <!--</form>-->
+                    <div class="default_phone">
+                        <p>选择默认头像</p>
+                        <p>
+                            <img src="image/default01.png" alt="默认头像" class="default"/>
+                            <img src="image/default02.png" alt="默认头像" class="default"/>
+                            <img src="image/default03.png" alt="默认头像" class="default"/>
+                            <img src="image/default04.png" alt="默认头像" class="default"/>
+                        </p>
+                    </div>
+                    <p class="phone_info">
+                        <img src="image/mark2.png" alt="提醒"/>
+                        <span>头像尺寸为100*100px,格式为png或jpg格式。</span>
+                    </p>  
+                </div>
+                <div class="user_info">
+                    <form method="post" id="user">
+                        <table>
+                                <tr>
+                                    <td class="info"><span style="color:red">*</span>用户名：</td>
+                                    <td style="width:200px;">
+                                        <input type="text" name="username" placeholder="zhangitng" th:placeholder="${user.username}"  class="input_text" disabled/>
+                                    </td>
+                                    <td  style="color:red">
+                                        <!--<button class="update_btn username" type="button">修改</button>  -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="info"><span style="color:red">*</span>手机号：</td>
+                                    <td style="width:200px;">
+                                    <input type="text" name="phone" placeholder="zhangitng" th:placeholder="${user.phone}" class="input_text" disabled/>
+                                    </td>
+                                    <td  style="color:red">
+                                    <button class="update_btn phone" type="button">修改</button>  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="info"><span style="color:red">*</span>邮&nbsp;&nbsp;&nbsp;箱：</td>
+                                    <td style="width:200px;">
+                                    <input type="text" name="email" placeholder="zhangitng" th:placeholder="${user.email}" class="input_text" disabled/>
+                                    </td>
+                                    <td  style="color:red">
+                                    <button class="update_btn email" type="button">修改</button>  
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="info"><span style="color:red">*</span>密&nbsp;&nbsp;&nbsp;码：</td>
+                                    <td style="width:200px;">
+                                    <input type="password" name="password" placeholder="密码不能少于8位，有字母数字符号组成"  class="input_text" disabled/>
+                                    </td>
+                                    <td  style="color:red;">
+                                    <button class="update_btn password" type="button">修改</button>  
+                                    </td>
+                                </tr>
+                                <tr hidden="hidden">
+                                    <td class="info">头&nbsp;&nbsp;&nbsp;像：</td>
+                                    <td colspan="2">
+                                        <input type="text" name="HeadImage" placeholder="不超过20个汉字或40个字符" class="input_text1" id="phone"/>
+                                        <!--<input type="text" name="uid" th:value="${user.uid}" />-->
+                                    </td>
+                                </tr>
+                                <!--<tr>-->
+                                    <!--<td class="info">简&nbsp;&nbsp;&nbsp;介：</td>-->
+                                    <!--<td colspan="2">-->
+                                        <!--<input type="text" name="jianjie" placeholder="简介" class="input_text1"/> -->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                        </table>
+                        <button class="submit" type="button" id="saveuser">保存</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="comm" id="join_community">
+            <p class="comm_title">我加入的社团</p>
+            <hr/>
+            <div th:each="item:${list}">
+                <div class="comm_div">
+                    <table class="comm_table">
+                        <tr>
+                            <td rowspan="2"><img th:src="'http://localhost:8080'+${item.community.logo}"/></td>
+                            <td th:text="${item.community.communityname}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${item.community.createdate}">2018-10-12</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="comm" id="apply_div" >
+            <p class="comm_title">我的申请</p>
+            <hr/>
+            <p class="comm_tongguo">审核通过</p>
+            <hr/>
+            <div th:each="item:${adoptApply}">
+                <div class="tongguo">
+                    <p class="comm_text" th:text="${item.applyReasons}">我们希望所有学生签证的申请人都可以耐心地等待申请结果。</p>
+                    <p>
+                        <span class="jianzhan"><a href="create_community.html">建站</a></span>
+                        <sapn class="date" th:text="${item.applyDate}">2018-10-12</sapn>
+                    </p>
+                </div>
+            </div>
+            <hr/>
+            <p class="comm_tongguo">待审核</p>
+            <hr/>
+            <div th:each="item:${waitApply}">
+                <div class="tongguo">
+                    <p class="comm_text" th:text="${item.applyReasons}">我们希望所有学生签证的申请人都可以耐心地等待申请结果。</p>
+                    <p class="comm_data" th:text="${item.applyDate}">2018-10-12 </p>
+                </div>
+            </div>
+             <hr/>
+            <p class="comm_tongguo">审核未通过</p>
+            <hr/>
+            <div th:each="item:${noApply}">
+                <div class="tongguo">
+                    <p class="comm_text" th:text="${item.applyReasons}">我们希望所有学生签证的申请人都可以耐心地等待申请结果。</p>
+                    <p class="comm_data" th:text="${item.applyDate}">2018-10-12 </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer style=" height: 100px;width:100%;background-color: rgba(62,62,62,1);float:left;">
+
+    </footer>
+</body>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/user_detail.js"></script>
+<script>
+    $('.default').click(function(){
+        var src = $(this).attr('src')
+        $('#user_phone').removeAttr('hidden');
+        $('#user_phone').attr('src',src);
+        $('.jiahao').attr('hidden','hidden');
+        $('#phone').attr('value',src);
+    });
+    $('#saveuser').click(function(){
+        var data = $('#user').serialize();
+        console.log(data);
+        $.ajax({
+            url:'updateuser',
+            type:'POST',
+            data:data,
+            success:function(result){
+                alert(result);
+            }
+        })
+    });
+
+</script>
+</html>
