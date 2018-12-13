@@ -97,36 +97,7 @@
                     <img src="http://localhost:8888/image/矩形 110.png" alt="海报1">
                 </div>
             </div>
-            <!--<div class="label-name" style="position:relative;">              -->
-                    <!--<span>活动要求</span>-->
-                <!--<div class="square_outline" >-->
-                    <!--<div class="square"></div>-->
-                    <!--<div class="square"></div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="activity_require">-->
-                <!---->
-            <!--</div>-->
-            <!--<div class="label-name" style="position:relative;">              -->
-                <!--<span>活动内容</span>-->
-                <!--<div class="square_outline" >-->
-                    <!--<div class="square"></div>-->
-                    <!--<div class="square"></div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="activity_context">-->
-                <!--<p>-->
-                <!--为了学生丰富课余活动，让同学更加了解学校社团的情况，了解社团，-->
-                <!--加入自己所喜欢的社团为了学生丰富课余活动，让同学更加了解学校-->
-                <!--社团的情况，了解社团，加入自己所喜欢的社团。为了学生丰富课余-->
-                <!--活动，让同学更加了解学校社团的情况，了解社团，加入自己所喜欢-->
-                <!--的社团。为了学生丰富课余活动，让同学更加了解学校社团的情况，-->
-                <!--了解社团，加入自己所喜欢的社团、为了学生丰富课余活动，让同学-->
-                <!--更加了解学校社团的情况，了解社团，加入自己所喜欢的社团。为了-->
-                <!--学生丰富课余活动，让同学更加了解学校社团的情况，了解社团，加-->
-                <!--入自己所喜欢的社团等等。-->
-                <!--</p>-->
-            <!--</div>    -->
+
         </div>
         <div class="info_follow">
                 <div class="info_follow_img">
@@ -140,8 +111,8 @@
                              <!--<img src="http://localhost:8888/image/information_2.png" alt="点赞人数"/>-->
                          <!--</li> -->
                          <li>
-                             <span>1000</span>
-                             <img src="http://localhost:8888/image/information_3.png" alt="点赞人数" id="comentclick" data_state="not_active"/>
+                             <span id="supportnumber">1000</span>
+                             <img src="http://localhost:8888/image/information_3.png" alt="点赞人数"  id="comentclick" data_state="not_active"/>
                          </li>
                          <!--<li>-->
                              <!--<span>1000</span>-->
@@ -194,12 +165,36 @@
 <script src="http://localhost:8888/js/sweet-alert.min.js"></script>
 <script>
     var aid = "[[${activity.aid}]]";
+    var username = "[[${session.username}]]";
+    function countByAid(){
+        $.ajax({
+            url:'http://localhost:8888/countsupport',
+            type:'post',
+            data:{'aid':aid},
+            success:function(result){
+                $('#supportnumber').text(result.extend.number);
+            }
+        })
+    };
+    countByAid();
+    function addSupport(){
+        if(username == ''){
+            swal('请先登录','','info');
+        }else{
+            $.ajax({
+                url:'http://localhost:8888/addsupport',
+                type:'post',
+                data:{"aid":aid,"username":username},
+                success:function(result){
+                    countByAid();
+                }
+            })
+        }
+    };
     function addComment(){
         var date = $('#divDate').text();
-        // var username = "[[${session.username}]]";
-        var username = 'test';
+        var username = "[[${session.username}]]";
         var comment = $('input[name="comment"]').val();
-        // console.log(aid+'--'+date+'--'+username+'=='+comment);
         if(username!='' && comment!=''){
             $.ajax({
                 url:'http://localhost:8888/addactivityComment',
@@ -219,7 +214,7 @@
         }else{
             swal("请用户先登录",'','info')
         }
-    }
+    };
     $('.commentall').click(function() {
         $(this).css('color','rgba(51,119,236,1)');
         $('.commentpart').css('color','rgba(62,62,62,1)');
@@ -263,12 +258,18 @@
     };
     $('#comentclick').click(function(){
         var data_state = $(this).attr("data_state")
-        if(data_state == 'not_active'){
-            $(this).attr('src','http://localhost:8888/image/zan.png');
-            $(this).attr('data_state','active');
+        if(username != ''){
+            if(data_state == 'not_active'){
+                $(this).attr('src','http://localhost:8888/image/zan.png');
+                $(this).attr('data_state','active');
+                addSupport();
+            }else{
+                $(this).attr('src','http://localhost:8888/image/information_3.png');
+                $(this).attr('data_state','not_active');
+                addSupport();
+            }
         }else{
-            $(this).attr('src','http://localhost:8888/image/information_3.png');
-            $(this).attr('data_state','not_active');
+            swal('请先登录','','info');
         }
     });
     $('.dianzan').click(function(){
@@ -298,5 +299,7 @@
         $(this).css('color','rgba(51,119,236,1)');
         $('.commentall').css('color','rgba(62,62,62,1)');
     });
+
+
 </script>
 </html>

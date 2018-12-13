@@ -54,12 +54,19 @@ public class InformationController {
         int iid = Integer.parseInt(request.getParameter("aid"));
         String date = request.getParameter("date");
          InformationComment comment1 = new InformationComment(0,iid,comment,date,uid,username,null);
-        System.out.println(comment1);
+//        System.out.println(comment1);
         boolean b = commentService.addComment(comment1);
         if(b){
             return Msg.success();
         }else{
             return  Msg.fail();
         }
+    }
+    @PostMapping("/getAllinformation")
+    @ResponseBody
+    public Msg getAllinformation(HttpServletRequest request){
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        List<Information> list = informationService.getAllByCid(cid);
+        return Msg.success().add("list",list);
     }
 }

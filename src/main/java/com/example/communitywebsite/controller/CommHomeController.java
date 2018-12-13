@@ -104,6 +104,7 @@ public class CommHomeController {
             if(bName && bUrl){
                 CommunityHome communityHome = new CommunityHome(0,communityname,createname,communityurl,createdate,
                         classification,modula,logo,template,null);
+                boolean bUpdate = ordinaryUserService.updatePowerByName(createname);
 //            System.out.println(communityHome);
                 boolean b = communityHomeService.addCommunity(communityHome);
                 int  cid = communityHomeService.getOneByCommuntiyname(communityname).getId();

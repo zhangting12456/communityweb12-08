@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class CommunityUser {
+public class InformationSupport {
     private int id;
+    private int iid;
     private int uid;
-    private int cid;
-    private CommunityHome community;
-   private OrdinaryUser ordinaryUser;
 }

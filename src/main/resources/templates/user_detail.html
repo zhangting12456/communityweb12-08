@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="css/user_detail.css"/>
-    <link rel="stylesheet" type="text/css" href="css/header.css"/>
-    <script type="text/javascript" src="js/currentTime.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/css/user_detail.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/css/sweet-alert.css"/>
+    <script type="text/javascript" src="http://localhost:8888/js/currentTime.js"></script>
 </head>
 <body>
     <header>
@@ -41,8 +42,8 @@
                         </li>
                     </ul>
                     <ul th:if="${session.username!=null}">
-                        <li style="margin-left:-10px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
-                        <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                        <li style="margin-left:20px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+                        <li ><a href="http:localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
                         <li id="divDate"></li>
                         <li>
                             <div id="divWeek"></div>
@@ -76,7 +77,7 @@
             </div>
             <div class="user-out">
                 <ul>
-                    <li><a href="#userout">退出</a></li>
+                    <li><a href="javascript:void(0);" id="userout">退出</a></li>
                 </ul>
             </div>
         </div>
@@ -194,7 +195,8 @@
                 <div class="tongguo">
                     <p class="comm_text" th:text="${item.applyReasons}">我们希望所有学生签证的申请人都可以耐心地等待申请结果。</p>
                     <p>
-                        <span class="jianzhan"><a href="create_community.html">建站</a></span>
+                        <!--href="create_community.html"-->
+                        <span class="jianzhan"><a href="javascript:void(0);" id="create_community" th:data_id="${item.id}">建站</a></span>
                         <sapn class="date" th:text="${item.applyDate}">2018-10-12</sapn>
                     </p>
                 </div>
@@ -223,8 +225,9 @@
 
     </footer>
 </body>
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/user_detail.js"></script>
+<script src="http://localhost:8888/js/jquery-2.2.4.min.js"></script>
+<script src="http://localhost:8888/js/sweet-alert.min.js"></script>
+<script src="http://localhost:8888/js/user_detail.js"></script>
 <script>
     $('.default').click(function(){
         var src = $(this).attr('src')
@@ -245,6 +248,33 @@
             }
         })
     });
-
+    $('#userout').click(function(){
+        $.ajax({
+            url:'http://localhost:8888/userout',
+            type:'get',
+            success:function(result){
+              swal("退出成功",'','success');
+              setTimeout(function(){
+                  window.location.href='http://localhost:8888/index.html';
+              },2000);
+            }
+        });
+    });
+    $('#create_community').click(function () {
+        var id = $(this).attr("data_id");
+        console.log(id);
+        $.ajax({
+            url:'http://localhost:8888/applyResult',
+            type:'post',
+            data:{'id':id},
+            success:function(result){
+                if(result.code == 200){
+                    window.location.href="http://localhost:8888/create_community.html";
+                }else{
+                   swal('不能重复建站',"已经成功建站",'info')
+                }
+            }
+        })
+    });
 </script>
 </html>

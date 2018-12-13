@@ -1,0 +1,401 @@
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8888/css/community_detail01.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/css/sweet-alert.css"/>
+    <script src="http://localhost:8888/js/currentTime.js"></script>
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <div class="body">
+        <header>
+            <div class="community_info">
+                <ul>
+                    <li>
+                        <div class="community_phone">
+                            <img th:src="'http://localhost:8080'+${item.logo}">
+                        </div>
+                    </li>
+                    <li th:text="${item.communityname}">书法协会</li>
+                </ul>
+            </div>
+            <div class="nav_div">
+                <ul>
+                    <li th:each="path:${path}" th:text="${path}">简介</li>
+                    <!--<li>活动</li>-->
+                    <!--<li>资讯</li>-->
+                    <!--<li>论坛</li>-->
+                    <!--<li>资料下载</li>-->
+                    <!--<li>留言</li>-->
+                </ul>
+            </div>
+            <div class="user_info">
+                <ul class="current_time" th:if="${session.username == null}">
+                    <li class="time_li">
+                    <a href="http://localhost:8888/login.html">登录</a>
+                    </li>
+                    <li class="time_li">
+                    <a href="http://localhost:8888/register.html">注册</a>
+                    </li>
+                    <li class="time_li" id="divDate"></li>
+                    <li class="time_li" id="divWeek"></li>
+                    <li class="time_li" id="divTime"></li>
+                </ul>
+                <ul class="current_time" th:if="${session.username != null}">
+                    <li class="time_li">
+                        <a href="http://localhost:8888/user_detail.html" th:text="${session.username}"></a>
+                    </li>
+                    <li class="time_li" id="divDate"></li>
+                    <li class="time_li" id="divWeek"></li>
+                    <li class="time_li" id="divTime"></li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="left_div">
+                <div class="introduction">
+                    <p>简介</p>
+                    <p th:text="${item.profile.historycontext}"> </p>
+                </div>
+                <div class="activity_information">
+                    <div class="activity">
+                        <div class="activity_head">
+                            <p>
+                                <span>活动</span>
+                                <span id="moreactivity">更多</span>
+                            </p>
+                        </div>
+                        <ul  class="activity_ul">
+                            <li th:each="actlist:${actList}">
+                                <a th:href="'http://localhost:8888/activity_detail/'+${actlist.aid}" th:text="${actlist.atitle}">活动名称</a>
+                                <span th:text="${actlist.startdate}">2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">活动名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">活动名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">活动名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">活动名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">活动名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                        </ul>
+                        <ul class="more_activity_ul"style="display:none"></ul>
+                    </div>
+                    <div class="activity information">
+                    <div class="activity_head">
+                            <p>
+                                <span>资讯</span>
+                                <span id="moreinformation">更多</span>
+                            </p>
+                        </div>
+                        <ul class="information_ul">
+                            <li th:each="infolist:${infoList}">
+                                <a th:href="'http://localhost:8888/information/'+${infolist.iId}" th:text="${infolist.Ititle}">资讯名称</a>
+                                <span th:text="${infolist.Idate}">2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">资讯名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">资讯名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">资讯名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">资讯名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">资讯名称</a>
+                                <span>2018-12-02</span>
+                            </li>
+                        </ul>
+                        <ul class="more_information_ul" style="display:none;"></ul>
+                    </div>
+                </div>
+                <div class="download">
+                    <div class="download_head">
+                       <p>
+                           <span>资料下载</span>
+                           <!--<span>更多</span>-->
+                       </p>
+                    </div>
+                    <ul>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                        <li>
+                            <span>资料名称</span>
+                            <span class="button">下载</span>
+                            <span>2018-12-09</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="liuyan">
+                    <p>留言</p>
+                    <textarea id="liuyan_text"></textarea>
+                    <button type="button" id="submit_btn">提交</button>
+                </div>
+                <div class="display" style="display:none;">
+                    <!--<div class="displayone">-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2" class="user_img"><img src="image/default01.png" style="width:40px;"></td>-->
+                                <!--<td>张木木</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>社团活佛你卡里贷款达速度快快捷登录撒打算打算开始看的啥电视剧就得紧紧的</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="right_div">
+                <div class="create_user" th:each="userlist:${userList}" th:if="${userlist.CommunityDuties eq '创始人'}" >
+                    <div class="user_headimg">
+                        <img th:src="'http://localhost:8080/'+${userlist.HeadImage}">
+                    </div>
+                    <div class="user-info">
+                        <p th:text="'创始人：'+${userlist.username}">创始人：张某某</p>
+                        <p th:text="'邮箱：'+${userlist.email}">邮箱：2260411400@qq.com</p>
+                    </div>
+                    <div class="history" th:if="${item.profile !=null}">
+                        <p th:text="${item.profile.historytitle}"> </p>
+                    </div>
+                    <div class="history" th:if="${item.profile ==null}">
+                        <p>暂无宣言</p>
+                    </div>
+                    <div class="countuser">
+                        <p th:text="'成员数量 ：'+${number}">成员数量：1000</p>
+                    </div>
+                </div>
+               <div class="user_list">
+                   <ul>
+                       <li>成员列表</li>
+                       <li th:each="userlist:${userList}" th:if="${userlist.CommunityDuties eq '会长'}">
+                           <div>
+                               <img th:src="'http://localhost:8080'+${userlist.HeadImage}">
+                            </div>
+                           <span th:text="'姓名：'+${userlist.username}">姓名：张木木</span>
+                           <span >职位：会长</span>
+                       </li>
+                       <li th:each="communityname:${communityuser}">
+                            <div>
+                                <img th:src="'http://localhost:8080'+${communityname.ordinaryUser.HeadImage}">
+                            </div>
+                            <span th:text="'姓名：'+${communityname.ordinaryUser.username}">姓名：张木木</span>
+                            <span >职位：会员</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <div></div>
+                            <span>姓名：张木木</span>
+                            <span>职位：会长</span>
+                        </li>
+                        <li>
+                            <span>收起更多成员</span>
+                            <span><img src="http://localhost:8888/image/other.png"></span>
+                        </li>
+                   </ul>
+               </div>
+            </div>
+        </main>
+        
+    </div>  
+    <footer>.</footer>
+</body>
+<script src="http://localhost:8888/js/jquery-2.2.4.min.js"></script>
+<script src="http://localhost:8888/js/sweet-alert.min.js"></script>
+<script>
+    $('#liuyan_text').blur(function(){
+        var str = $(this).val();
+        if(str != ''){
+            $('#submit_btn').css('background','rgba(246,185,64,1)');
+        }
+    });
+    $('#moreactivity').click(function(){
+        // alert('123');
+        $('.activity_ul').css("display",'none');
+        $('.more_activity_ul').css('display','');
+        var cid = "[[${item.id}]]";
+        // console.log($('.more_activity_ul').text())
+        if($('.more_activity_ul').text()!=''){
+            return
+        }
+        $.ajax({
+            url:'http://localhost:8888/getAllActivity',
+            type:'post',
+            data:{'cid':cid},
+            success:function(result){
+                initactivity(result.extend.list);
+            }
+        });
+    });
+   function initactivity(item) {
+        var str ='';
+        $.each(item,function(i,j){
+            str +="<li>";
+            str +="<a href='http://localhost:8888/activity_detail/"+j.aid+"'>"+j.atitle+"</a>";
+            str +="<span>"+j.startdate+"</span>";
+            str +="</li>";
+        });
+        $('.more_activity_ul').append(str);
+    };
+    $('#moreinformation').click(function(){
+        $('.information_ul').css("display",'none');
+        $('.more_information_ul').css('display','');
+        var cid = "[[${item.id}]]";
+        if($('.more_information_ul').text()!=''){
+            return
+        }
+        $.ajax({
+            url:'http://localhost:8888/getAllinformation',
+            type:'post',
+            data:{'cid':cid},
+            success:function(result){
+                initinformation(result.extend.list);
+            }
+        });
+    });
+    function initinformation(item) {
+        var str ='';
+        $.each(item,function(i,j){
+            str +="<li>";
+            str +="<a href='http://localhost:8888/activity_detail/"+j.iid+"'>"+j.ititle+"</a>";
+            str +="<span>"+j.idate+"</span>";
+            str +="</li>";
+        });
+        $('.more_information_ul').append(str);
+    };
+    $('#submit_btn').click(function(){
+        var data = $('#liuyan_text').val();
+        var date = $('#divDate').text();
+        var cid = "[[${item.id}]]";
+        // var name = "[[${session.username}]]";
+        var name = 'test';
+       // console.log(data+"=="+date+"==="+name+"=="+cid);
+        if(data==''){
+            swal("请输入留言",'','info')
+            return
+        }
+        $.ajax({
+            url:'http://localhost:8888/addliuyan',
+            type:'post',
+            data:{'cid':cid,'date':date,'name':name,'data':data},
+            success:function (result) {
+                if(result.code == 200){
+                    swal('留言成功','','success');
+                    displayLiuyan();
+                }
+            }
+        })
+    });
+    function displayLiuyan() {
+        var cid = "[[${item.id}]]";
+        $.ajax({
+            url:'http://localhost:8888/selectliuyanbycid',
+            type:'post',
+            data:{'cid':cid},
+            success:function(result){
+                initliuyan(result.extend.list);
+            }
+        });
+    }
+    function  initliuyan(item) {
+        var dataStr = '';
+        $.each(item,function(i,j){
+            dataStr +="<div class='displayone'>";
+            dataStr +="<table>";
+            dataStr +="<tr>";
+            dataStr +="<td rowspan='2' class='user_img'><img src='http://localhost:8080/"+j.user.headImage+"' style='width:40px;'></td>";
+            dataStr +="<td>"+j.user.username+"</td>";
+            dataStr +="<td>"+j.time+"</td>";
+            dataStr +="</tr>";
+            dataStr +="<tr>";
+            dataStr +="<td colspan='2'>"+j.content+"</td>";
+            dataStr +="</tr>";
+            dataStr +="</table>";
+            dataStr +="</div>";
+        })
+        // console.log(dataStr);
+        $('.display').append(dataStr);
+        $('.display').css("display",'');
+    }
+</script>
+</html>

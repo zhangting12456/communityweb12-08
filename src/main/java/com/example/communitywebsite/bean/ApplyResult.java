@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class CommunityUser {
+public class ApplyResult {
     private int id;
-    private int uid;
-    private int cid;
-    private CommunityHome community;
-   private OrdinaryUser ordinaryUser;
+    private int applyid;
 }

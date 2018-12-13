@@ -23,4 +23,11 @@ public class ActivityService {
     public Activity getOneById(int id){
         return activityMapper.getOneById(id);
     }
+
+    public List<Activity> getFiveActivityById(int cid) {
+       return activityMapper.getFiveActivityById(cid);
+    }
+    public List<Activity>  getAllByCid(int cid){
+        return activityMapper.getAllByCid(cid);
+    }
 }

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8888/css/header.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8888/css/community_deatil.css" />
+    <link rel="stylesheet" type="text/css" href="http://localhost:8888/css/sweet-alert.css"/>
+    <script src="http://localhost:8888/js/currentTime.js"></script>
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <div class="body">
+        <div class="head">
+            <div class="nav">
+                <div class="nav_left">
+                    <ul class="community_info">
+                        <li>
+                            <div class="community_phone">
+                                <img th:src="'http://localhost:8080'+${item.logo}" style="width:100%";/>
+                            </div>
+                        </li>
+                        <li th:text="${item.communityname}">书法协会</li>
+                    </ul>
+                </div>
+                <div class="nav_main">
+                    <ul class="nav-bar-ul">
+                        <li class="nav-bar-li detail" th:each="items:${path}" th:text="${items}"></li>
+                    </ul>
+                </div>
+                <div class="nav_right">
+                    <ul class="current_time" th:if="${session.username == null}">
+                        <li class="time_li">
+                        <a href="http://localhost:8888/login.html">登录</a>
+                        </li>
+                        <li class="time_li">
+                        <a href="http://localhost:8888/register.html">注册</a>
+                        </li>
+                        <li class="time_li" id="divDate"></li>
+                        <li class="time_li" id="divWeek"></li>
+                        <li class="time_li" id="divTime"></li>
+                    </ul>
+                    <ul class="current_time" th:if="${session.username != null}">
+                        <li class="time_li">
+                            <a href="http://localhost:8888/user_detail.html" th:text="${session.username}"></a>
+                        </li>
+                        <!--<li class="time_li">-->
+                        <!--<a href="http://localhost:8888/register.html">注册</a>-->
+                        <!--</li>-->
+                        <li class="time_li" id="divDate"></li>
+                        <li class="time_li" id="divWeek"></li>
+                        <li class="time_li" id="divTime"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div style="width:215px;height:150px; float: left;">
+                <div  class="left" th:each="user:${userList}" th:if="${user.CommunityDuties eq '创始人'}">
+                    <div class="username_phone">
+                        <img src="http://localhost:8888/image/community-detail01.png" th:src="'http://localhost:8080/'+${user.HeadImage}"/>
+                    </div>
+                    <div class="user_info" >
+                        <p>
+                            <span>创始人</span>
+                            <span th:text="${user.username}">张某某</span>
+                        </p>
+                        <p th:text="'邮箱：'+${user.email}">邮箱：15544645456@qq.com</p>
+                        <p th:if="${item.profile}!=null" th:text="${item.profile.historytitle}"></p>
+                        <p th:if="${item.profile}==null" >暂无内容</p>
+                        <p th:text="'成员数量 ：'+${number}">成员数量 ：10000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="fenge">
+                    <span>简介</span>
+                    <div>
+                        <img src="http://localhost:8888/image/community-detail02.png"/>
+                    </div>
+                </div>
+                <div class="breif-introduction">
+                    <p th:text="${item.profile.historycontext}"></p>
+                </div>
+                <div class="activity_info">
+                    <div class="activity">
+                        <div>
+                            <span>活动</span>
+                        </div>
+                        <div>
+                            <ul>
+                                <li th:each="actlist:${actList}">
+                                    <a th:href="'http://localhost:8888/activity_detail/'+${actlist.aid}">
+                                       <span class="activity_title" th:text="${actlist.atitle}">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time" th:text="${actlist.startdate}">2018-12-09</span>
+                                </li>
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">-->
+                                        <!--<span class="activity_title">这是一个活动</span>-->
+                                    <!--</a>-->
+                                    <!--<span class="activity_time">2018-12-09</span>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div>
+                            <span>资讯</span>
+                        </div>
+                        <div>
+                            <ul>
+                                <li th:each="infolist:${infoList}">
+                                    <a th:href="'http://localhost:8888/information/'+${infolist.iId}">
+                                        <span class="activity_title" th:text="${infolist.Ititle}">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time" th:text="${infolist.Idate}">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <span class="activity_title">这是一个活动</span>
+                                    </a>
+                                    <span class="activity_time">2018-12-09</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="fenge user">
+                    <span>成员列表</span>
+                    <div>
+                        <img src="http://localhost:8888/image/community-detail02.png"/>
+                    </div>
+                </div>
+                <div class="user_list">
+                    <div th:each="userlist:${userList}" th:if="${userlist.CommunityDuties eq '会长'}">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080'+${userlist.HeadImage}"/>
+                                </td>
+                                <td th:text="'姓名：'+${userlist.username}">姓名：张某某</td>
+                            </tr>
+                            <tr>
+                                <td th:text="'职位：'+${userlist.CommunityDuties}">职位：会长</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div th:each="users:${communityuser}">
+                        <table>
+                            <tr>
+                                <td rowspan="2">
+                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080/'+${users.ordinaryUser.HeadImage}"/>
+                                </td>
+                                <td th:text="'姓名：'+${users.ordinaryUser.username}">姓名：张某某</td>
+                            </tr>
+                            <tr>
+                                <td>职位：会员</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2">-->
+                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
+                                <!--</td>-->
+                                <!--<td>姓名：张某某</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>职位：会长</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                </div>
+                <div class="fenge user">
+                    <span>资料下载</span>
+                    <div>
+                        <img src="http://localhost:8888/image/community-detail02.png"/>
+                    </div>
+                </div>
+                <div class="download">
+                     <ul class="download_ul">
+                        <li class="download_li">
+                            <span>资料下载</span>
+                            <span>2018-12-09</span>
+                            <span>
+                                <a href="javascript:void(0);">下载</a>
+                            </span>
+                        </li>
+                        <li class="download_li">
+                            <span>资料下载</span>
+                            <span>2018-12-09</span>
+                            <span>
+                                <a href="javascript:void(0);">下载</a>
+                            </span>
+                        </li>
+                        <li class="download_li">
+                            <span>资料下载</span>
+                            <span>2018-12-09</span>
+                            <span>
+                                <a href="javascript:void(0);">下载</a>
+                            </span>
+                        </li>
+                        <li class="download_li">
+                            <span>资料下载</span>
+                            <span>2018-12-09</span>
+                            <span>
+                                <a href="javascript:void(0);">下载</a>
+                            </span>
+
+                        </li>
+                     </ul>
+                </div>
+                <div class="fenge">
+                    <span>留言</span>
+                    <div>
+                        <img src="http://localhost:8888/image/community-detail02.png"/>
+                    </div>
+                </div>
+                <div class="textarea">
+                    <textarea id="liuyan_text"></textarea>
+                    <button type="button" id="submit_btn">提交</button>
+                </div>
+                <div class="display" style="display:none;">
+                    <!--<div class="displayone">-->
+                        <!--<table>-->
+                            <!--<tr>-->
+                                <!--<td rowspan="2" class="user_img"><img src="image/default01.png" style="width:40px;"></td>-->
+                                <!--<td>张木木</td>-->
+                                <!--<td>2018-12-12</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td colspan="2">社团活佛你卡里贷款达速度快快捷登录撒打算打算开始看的啥电视剧就得紧紧的</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+</body>
+<script src="http://localhost:8888/js/jquery-2.2.4.min.js"></script>
+<script src="http://localhost:8888/js/sweet-alert.min.js"></script>
+<script>
+    $('#liuyan_text').blur(function(){
+        var message = $(this).val();
+        if(message!=''){
+            $('#submit_btn').css('background','rgba(246,185,64,1)');
+        }
+    });
+    $('#submit_btn').click(function(){
+        var data = $('#liuyan_text').val();
+        var date = $('#divDate').text();
+        var cid = "[[${item.id}]]";
+        // var name = "[[${session.username}]]";
+        var name = 'test';
+        // console.log(data+"=="+date+"==="+name+"=="+cid);
+        if(data==''){
+            swal("请输入留言",'','info')
+             return
+        }
+        $.ajax({
+            url:'http://localhost:8888/addliuyan',
+            type:'post',
+            data:{'cid':cid,'date':date,'name':name,'data':data},
+            success:function (result) {
+                if(result.code == 200){
+                    swal('留言成功','','success');
+                    displayLiuyan();
+                }
+            }
+        })
+    });
+    function displayLiuyan() {
+        var cid = "[[${item.id}]]";
+        $.ajax({
+            url:'http://localhost:8888/selectliuyanbycid',
+            type:'post',
+            data:{'cid':cid},
+            success:function(result){
+                initliuyan(result.extend.list);
+            }
+        });
+    }
+    function  initliuyan(item) {
+        var dataStr = '';
+        $.each(item,function(i,j){
+            dataStr +="<div class='displayone'>";
+            dataStr +="<table>";
+            dataStr +="<tr>";
+            dataStr +="<td rowspan='2' class='user_img'><img src='http://localhost:8080/"+j.user.headImage+"' style='width:40px;'></td>";
+            dataStr +="<td class='user_td'>"+j.user.username+"</td>";
+            dataStr +="<td class='time_td'>"+j.time+"</td>";
+            dataStr +="</tr>";
+            dataStr +="<tr>";
+            dataStr +="<td colspan='2'>"+j.content+"</td>";
+            dataStr +="</tr>";
+            dataStr +="</table>";
+            dataStr +="</div>";
+        })
+        // console.log(dataStr);
+        $('.display').append(dataStr);
+        $('.display').css("display",'');
+    }
+</script>
+</html>

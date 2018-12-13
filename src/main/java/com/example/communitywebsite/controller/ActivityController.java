@@ -2,6 +2,7 @@ package com.example.communitywebsite.controller;
 
 import com.example.communitywebsite.bean.Activity;
 import com.example.communitywebsite.bean.ActivityComment;
+import com.example.communitywebsite.bean.Msg;
 import com.example.communitywebsite.service.ActivityCommentService;
 import com.example.communitywebsite.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -35,4 +37,11 @@ public class ActivityController {
         return "activity_detail";
     }
 
+    @RequestMapping("/getAllActivity")
+    @ResponseBody
+    public Msg getAllActivity(HttpServletRequest request){
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        List<Activity> list = activityService.getAllByCid(cid);
+        return Msg.success().add("list",list);
+    }
 }

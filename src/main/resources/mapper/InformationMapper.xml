@@ -20,4 +20,18 @@
         ON t_information.cid = t_community_home.id
         ORDER BY Idate DESC  LIMIT 5;
      </select>
+    <select id="getAllByCid" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.Information">
+        SELECT t_information.*,t_community_home.communityname FROM t_information
+        LEFT JOIN t_community_home
+        ON t_information.cid = t_community_home.id
+        WHERE  t_information.cId = #{cid}
+        ORDER BY startdate DESC ;
+     </select>
+    <select id="getFiveInformationByCid" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.Information">
+       SELECT t_information.*,t_community_home.communityname FROM t_information
+        LEFT JOIN t_community_home
+        ON t_information.cid = t_community_home.id
+        WHERE  t_information.cId =#{cid}
+        ORDER BY Idate DESC  LIMIT 5;
+     </select>
 </mapper>

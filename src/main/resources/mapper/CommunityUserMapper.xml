@@ -25,4 +25,34 @@
             <result column="template" property="template"/>
         </association>
     </resultMap>
+    <select id="selectByCidUid" parameterType="com.example.communitywebsite.bean.CommunityUser" resultType="java.lang.Integer">
+        SELECT count(id) FROM t_community_users
+        WHERE t_community_users.cid = #{cid} AND t_community_users.uid =#{uid}
+    </select>
+    <insert id="insert" parameterType="com.example.communitywebsite.bean.CommunityUser" >
+         INSERT INTO t_community_users (cid,uid) VALUES (#{cid},#{uid})
+    </insert>
+    <select id="getAllByCid" parameterType="java.lang.Integer" resultMap="UserResultMap">
+        SELECT t_community_users.* ,t_ordinary_user.* FROM t_community_users
+        LEFT JOIN  t_ordinary_user
+        ON t_ordinary_user.uid = t_community_users.uid
+        WHERE t_community_users.cid =1
+    </select>
+    <resultMap id="UserResultMap" type="com.example.communitywebsite.bean.CommunityUser">
+        <id column="id" property="id"/>
+        <result column="uid" property="uid"/>
+        <result column="cid" property="cid"/>
+        <association property="ordinaryUser" javaType="com.example.communitywebsite.bean.OrdinaryUser">
+            <id column="uid" property="uid"/>
+            <result column="username" property="username"/>
+            <result column="email" property="email"/>
+            <result column="phone" property="phone"/>
+            <result column="CommunityId" property="CommunityId"/>
+            <result column="CommunityDuties" property="CommunityDuties"/>
+            <result column="HeadImage" property="HeadImage"/>
+            <result column="sex" property="sex"/>
+            <result column="createDate" property="createDate"/>
+            <result column="Jurisdiction" property="Jurisdiction"/>
+        </association>
+    </resultMap>
 </mapper>

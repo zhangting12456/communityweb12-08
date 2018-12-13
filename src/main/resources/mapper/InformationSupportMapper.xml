@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.communitywebsite.dao.InformationSupportMapper">
+    <select id="countByAid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT count(iId) FROM  t_information_support WHERE iId =#{iid}
+    </select>
+    <select id="selectByAidAndUid" parameterType="com.example.communitywebsite.bean.InformationSupport"
+            resultType="java.lang.Integer">
+        SELECT  count(iId) FROM  t_information_support WHERE  iId =#{iid} AND  uid=#{uid}
+    </select>
+    <delete id="deleteByAidAndUid" parameterType="com.example.communitywebsite.bean.InformationSupport" >
+        DELETE FROM  t_information_support WHERE  iId =#{iid} AND uid=#{uid}
+    </delete>
+    <insert id="insert" parameterType="com.example.communitywebsite.bean.InformationSupport">
+        INSERT  INTO  t_information_support (iId,uid) VALUES (#{iid},#{uid});
+    </insert>
+</mapper>

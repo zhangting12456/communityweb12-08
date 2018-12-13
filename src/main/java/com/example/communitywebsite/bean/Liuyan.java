@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CommunityUser {
+public class Liuyan {
     private int id;
-    private int uid;
     private int cid;
-    private CommunityHome community;
-   private OrdinaryUser ordinaryUser;
+    private int uid;
+    private String content;
+    private String time;
+    private OrdinaryUser user;
 }

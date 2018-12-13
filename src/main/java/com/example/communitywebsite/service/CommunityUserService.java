@@ -15,4 +15,24 @@ public class CommunityUserService {
     public List<CommunityUser> getCommunityUser(String username){
         return communityUserMapper.getCommunityByName(username);
     }
+
+    public boolean insert(CommunityUser communityUser){
+        int b = communityUserMapper.insert(communityUser);
+        if(b==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public boolean selectByCidUid(CommunityUser communityUser){
+        int b = communityUserMapper.selectByCidUid(communityUser);
+        if(b==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public  List<CommunityUser> getAllByCid(int cid){
+        return communityUserMapper.getAllByCid(cid);
+    }
 }

@@ -63,8 +63,8 @@
         </div>
         <div class="user">
             <ul th:if="${session.username==null}">
-                <li ><a href="login.html" id="username">登录</a></li>
-                <li ><a href="register.html">注册</a></li>
+                <li ><a href="http://localhost:8888/login.html" id="username">登录</a></li>
+                <li ><a href="http://localhost:8888/register.html">注册</a></li>
                 <li id="divDate"></li>
                 <li>
                     <div id="divWeek"></div>
@@ -74,7 +74,7 @@
             <ul th:if="${session.username!=null}">
                 <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage==null}"><img src ="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
                 <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage!=null}"><img th:src="${session.headimage}" style="width:35px;height:35px;margin-top:8px;" /></li>
-                <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                <li ><a href="http://localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
                 <li id="divDate"></li>
                 <li>
                     <div id="divWeek"></div>
@@ -148,7 +148,7 @@
 </div>
 <div class="community" th:each="item:${community}">
     <div class="community-web">
-        <a href="javascript:(0);" th:href="${item.communityurl}">
+        <a href="javascript:(0);" th:href="'comhome/'+${item.communityurl}">
             <img src="" alt="community-log" th:src="'http://localhost:8080'+${item.logo}"/>
             <p>
                 <span th:text="${item.communityname}">三明学院</span>
@@ -160,17 +160,17 @@
              </p>
             <p class="introduction" th:if="${item.profile==null}" th:text="'简 介:无'"></p>
         </a>
-        <button class="join">
+        <button class="join" th:data_cid="${item.id}">
             + 加入
         </button>
     </div>
 </div>
 <div class="footer" style="float: left;">
 </div>
-<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="js/slide.js"></script>
-<script type="text/javascript" src="js/xcConfirm.js"></script>
-<script src="js/sweet-alert.min.js"></script>
+<script type="text/javascript" src="http://localhost:8888/js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="http://localhost:8888/js/slide.js"></script>
+<script type="text/javascript" src="http://localhost:8888/js/xcConfirm.js"></script>
+<script src="http://localhost:8888/js/sweet-alert.min.js"></script>
 <script>
     <!--申请建站的js-->
     $('.sav').click(function(){
@@ -208,6 +208,27 @@
             },
         });
     }
+    $('.join').click(function(){
+        var cid = $(this).attr('data_cid');
+        var name = '[[${session.username}]]';
+        // console.log(cid+'====='+name);
+        if(name==''){
+            swal('请先登录','','info');
+        }else{
+            $.ajax({
+                url:'http://localhost:8888/joincommunity',
+                type:'post',
+                data:{'cid':cid,'name':name},
+                success:function(result){
+                    if(result.code == 200){
+                        swal(result.extend.info,'','success');
+                    }else{
+                        swal(result.extend.info,'','error');
+                    }
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>

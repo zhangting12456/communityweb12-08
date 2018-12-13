@@ -49,4 +49,10 @@
     <select id="countByCommunityurl" parameterType="String" resultType="java.lang.Integer">
         SELECT COUNT(communityname) FROM t_community_home WHERE communityurl=#{communityurl}
     </select>
+    <select id="getCommunityByUrl" parameterType="String"  resultMap="ZtResultMap">
+        SELECT  * FROM  t_community_home
+        LEFT JOIN t_community_profile
+        ON t_community_home.id = t_community_profile.cid
+        WHERE  communityurl = #{communityurl}
+    </select>
 </mapper>

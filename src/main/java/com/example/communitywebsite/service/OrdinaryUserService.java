@@ -53,6 +53,35 @@ public class OrdinaryUserService {
             return true;
         }
     }
+
+    public List<OrdinaryUser> getAllByCid(int cid) {
+        List<OrdinaryUser> list = userMapper.getAllByCid(cid);
+        for (OrdinaryUser item :list){
+            item.setPassword("");
+        }
+        return list;
+    }
+    public int countByCid(int cid){
+        return userMapper.countByCid(cid);
+    }
+
+    public OrdinaryUser getCreateUserByCid(int cid){
+        OrdinaryUser user = userMapper.getCreateUserByCid(cid);
+        if(user == null){
+            return null;
+        }
+        user.setPassword("");
+        return user;
+    }
+
+    public  boolean  updatePowerByName(String username){
+        int b = userMapper.updatePowerByName(username);
+        if(b == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 //    用户通过id更新数据
 //    public boolean updatePassword(int id) {
 //        int n = userMapper.updatePassword(i);

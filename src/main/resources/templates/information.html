@@ -79,8 +79,8 @@
                        <img src="http://localhost:8888/image/information_1.png" alt="查看人数"/>
                    </li>
                     <li>
-                        <span>1000</span>
-                        <img src="http://localhost:8888/image/information_3.png" alt="查看人数" id="comentclick"/>
+                        <span id="supportnumber">1000</span>
+                        <img src="http://localhost:8888/image/information_3.png" alt="查看人数" id="comentclick" data_state="not_active"/>
                     </li>
 
                </ul>
@@ -140,10 +140,39 @@
         }
 //        -----------------------------------
     var aid = "[[${information.iId}]]";
+    var username = 'test';
+    // var username = "[[${session.username}]]";
+    function countByAid(){
+        $.ajax({
+            url:'http://localhost:8888/countinfosupport',
+            type:'post',
+            data:{'aid':aid},
+            success:function(result){
+                $('#supportnumber').text(result.extend.number);
+            }
+        })
+    };
+    countByAid();
+    function addSupport(){
+        // var username = 'test';
+        // var username = "[[${session.username}]]";
+        if(username == ''){
+            swal('请先登录','','info');
+        }else{
+            $.ajax({
+                url:'http://localhost:8888/addinfosupport',
+                type:'post',
+                data:{"aid":aid,"username":username},
+                success:function(result){
+                    countByAid();
+                }
+            })
+        }
+    };
     function addComment(){
         var date = $('#divDate').text();
         // var username = "[[${session.username}]]";
-        var username = 'test';
+        // var username = 'test';
         var comment = $('input[name="comment"]').val();
         // console.log(aid+'--'+date+'--'+username+'=='+comment);
         if(username!='' && comment!=''){
@@ -209,13 +238,20 @@
     };
     $('#comentclick').click(function(){
         var data_state = $(this).attr("data_state")
-        if(data_state == 'not_active'){
-            $(this).attr('src','http://localhost:8888/image/zan.png');
-            $(this).attr('data_state','active');
+        if(username != ''){
+            if(data_state == 'not_active'){
+                $(this).attr('src','http://localhost:8888/image/zan.png');
+                $(this).attr('data_state','active');
+                addSupport();
+            }else{
+                $(this).attr('src','http://localhost:8888/image/information_3.png');
+                $(this).attr('data_state','not_active');
+                addSupport();
+            }
         }else{
-            $(this).attr('src','http://localhost:8888/image/information_3.png');
-            $(this).attr('data_state','not_active');
+            swal('请先登录','','info')
         }
+
     });
     $('.dianzan').click(function(){
         //data_state="not_active"

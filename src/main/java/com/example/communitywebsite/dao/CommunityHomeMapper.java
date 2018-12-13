@@ -13,4 +13,5 @@ public interface CommunityHomeMapper {
     CommunityHome getOneByCommunity(String communityname);
     int countByCommunityname(String name);
     int countByCommunityurl(String url);
+    CommunityHome getCommunityByUrl(String url);
 }

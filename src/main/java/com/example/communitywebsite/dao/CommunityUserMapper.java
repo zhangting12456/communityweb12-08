@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface CommunityUserMapper {
     List<CommunityUser> getCommunityByName(String username);
+    int insert(CommunityUser communityUser);
+    int selectByCidUid(CommunityUser communityUser);
+    List<CommunityUser> getAllByCid(int cid);
 }

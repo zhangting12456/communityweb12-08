@@ -11,5 +11,8 @@ public interface ActivityMapper {
     List<Activity> getAll();
 //    通过id的到活动
     Activity getOneById(int id);
-
+//    得到社团id所有的记录
+    List<Activity> getAllByCid(int id);
+//    通过社团id的到前5活动
+    List<Activity> getFiveActivityById(int id);
 }

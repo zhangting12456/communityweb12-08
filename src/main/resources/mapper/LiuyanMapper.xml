@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.communitywebsite.dao.LiuyanMapper">
+   <insert id="insert" parameterType="com.example.communitywebsite.bean.Liuyan">
+       INSERT  INTO  t_liuyan (uid,cid,content,time) VALUES (#{uid},#{cid},#{content},#{time})
+   </insert>
+    <select id="selectByCid" parameterType="java.lang.Integer" resultMap="ResultMapByuser">
+        SELECT t_liuyan.*,t_ordinary_user.* FROM  t_liuyan
+        LEFT JOIN t_ordinary_user
+        ON  t_liuyan.uid = t_ordinary_user.uid
+        WHERE t_liuyan.cid = #{cid}
+    </select>
+    <resultMap id="ResultMapByuser" type="com.example.communitywebsite.bean.Liuyan">
+        <id property="id" column="id"></id>
+        <result property="uid" column="uid"></result>
+        <result property="cid" column="cid"></result>
+        <result property="content" column="content"></result>
+        <result property="time" column="time"></result>
+        <association property="user" javaType="com.example.communitywebsite.bean.OrdinaryUser">
+            <id column="uid" property="uid"/>
+            <result column="username" property="username"/>
+            <result column="email" property="email"/>
+            <result column="phone" property="phone"/>
+            <result column="CommunityId" property="CommunityId"/>
+            <result column="CommunityDuties" property="CommunityDuties"/>
+            <result column="HeadImage" property="HeadImage"/>
+            <result column="sex" property="sex"/>
+            <result column="createDate" property="createDate"/>
+            <result column="Jurisdiction" property="Jurisdiction"/>
+        </association>
+    </resultMap>
+</mapper>

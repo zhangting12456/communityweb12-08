@@ -55,4 +55,21 @@
     <update id="updateHeadImageByName" parameterType="com.example.communitywebsite.bean.OrdinaryUser">
         UPDATE  t_ordinary_user SET  HeadImage=#{HeadImage} WHERE  username =#{username}
     </update>
+    <select id="getAllByCid" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.OrdinaryUser">
+        SELECT * FROM t_ordinary_user WHERE t_ordinary_user.CommunityId = #{CommunityId}
+        ORDER BY t_ordinary_user.Jurisdiction ASC
+    </select>
+    <select id="countByCid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT count(t_ordinary_user.CommunityId) FROM t_ordinary_user
+        WHERE t_ordinary_user.CommunityId = #{CommunityId}
+    </select>
+    <select id="getCreateUserByCid" parameterType="java.lang.Integer" resultType="com.example.communitywebsite.bean.OrdinaryUser">
+        SELECT * FROM t_ordinary_user
+         WHERE t_ordinary_user.CommunityId = #{CommunityId}  AND t_ordinary_user.Jurisdiction = 1;
+    </select>
+    <update id="updatePowerByName" parameterType="String" >
+        UPDATE t_ordinary_user SET t_ordinary_user.CommunityId = 1 ,
+        t_ordinary_user.CommunityDuties = '创始人' ,t_ordinary_user.Jurisdiction = 1
+        WHERE username = #{username}
+    </update>
 </mapper>

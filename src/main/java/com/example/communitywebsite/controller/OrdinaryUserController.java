@@ -30,16 +30,11 @@ public class OrdinaryUserController {
     public String toUserDetail(HttpServletRequest request, Model model){
         String username = (String) request.getSession().getAttribute("username");
         OrdinaryUser user = ordinaryUserService.getOneByName(username);
-//        user.setPassword(null);
-//        System.out.println(user);
+
         List<Apply> noApply = applyService.getApplyByNoPass(username);
         List<Apply> adoptApply = applyService.getApplyByAdoptName(username);
         List<Apply> waitApply = applyService.getApplyByWait(username);
         List<CommunityUser> list = communityUserService.getCommunityUser(username);
-//        System.out.println(noApply);
-//        System.out.println(adoptApply);
-//        System.out.println(waitApply);
-//        System.out.println(list);
         model.addAttribute("noApply",noApply);
         model.addAttribute("waitApply",waitApply);
         model.addAttribute("adoptApply",adoptApply);
@@ -66,10 +61,12 @@ public class OrdinaryUserController {
     }
 //    退出登录
      @RequestMapping("/userout")
-     public  String userOut(HttpServletRequest request){
+     @ResponseBody
+       public  Msg  userOut(HttpServletRequest request){
 //            request.getSession().removeAttribute("username");
          request.getSession().invalidate();
-            return "index";
+//            return "index.html";
+         return Msg.success();
     }
 
 //    @RequestMapping("/communityuser/{username}")

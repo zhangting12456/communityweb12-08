@@ -54,6 +54,10 @@ public class CommunityHomeService {
             return false;
         }
     }
+//
+    public CommunityHome getCommunityByUrl(String url){
+        return communityHomeMapper.getCommunityByUrl(url);
+    }
 }
 
 

@@ -13,4 +13,8 @@ public interface OrdinaryUserMapper {
     int updateUserByName(OrdinaryUser user);
 //    上传头像
     int updateHeadImageByName(OrdinaryUser user);
+    List<OrdinaryUser> getAllByCid(int cid);
+    int countByCid(int cid);
+    OrdinaryUser getCreateUserByCid(int cid);
+    int updatePowerByName(String username);
 }
