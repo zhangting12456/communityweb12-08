@@ -104,12 +104,14 @@ public class CommHomeController {
             if(bName && bUrl){
                 CommunityHome communityHome = new CommunityHome(0,communityname,createname,communityurl,createdate,
                         classification,modula,logo,template,null);
-                boolean bUpdate = ordinaryUserService.updatePowerByName(createname);
+
 //            System.out.println(communityHome);
                 boolean b = communityHomeService.addCommunity(communityHome);
                 int  cid = communityHomeService.getOneByCommuntiyname(communityname).getId();
 //                System.out.println(cid);
-
+                OrdinaryUser user = new OrdinaryUser(0,createname,"","","",cid,
+                        "","","","",0);
+                boolean bUpdate = ordinaryUserService.updatePowerByName(user);
                 CommunityProfile communityProfile = new CommunityProfile(0,cid,historytitle,historycontext);
                 boolean b1 = profileService.addCommunityProfile(communityProfile);
 //                System.out.println(b1);

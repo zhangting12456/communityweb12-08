@@ -11,8 +11,8 @@
     </select>
     <resultMap id="ResultMap" type="com.example.communitywebsite.bean.CommunityUser">
         <id column="id" property="id"/>
-        <result column="uid" property="uid"/>
         <result column="cid" property="cid"/>
+        <result column="uid" property="uid"/>
         <association property="community" javaType="com.example.communitywebsite.bean.CommunityHome">
             <id column="pId" property="pid"/>
             <result column="communityname" property="communityname"/>
@@ -40,8 +40,8 @@
     </select>
     <resultMap id="UserResultMap" type="com.example.communitywebsite.bean.CommunityUser">
         <id column="id" property="id"/>
-        <result column="uid" property="uid"/>
         <result column="cid" property="cid"/>
+        <result column="uid" property="uid"/>
         <association property="ordinaryUser" javaType="com.example.communitywebsite.bean.OrdinaryUser">
             <id column="uid" property="uid"/>
             <result column="username" property="username"/>

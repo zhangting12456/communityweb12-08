@@ -41,7 +41,7 @@
                 </li>
             </ul>
             <ul th:if="${session.username!=null}">
-                <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage==null}"><img src ="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
+                <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage==null}"><img src ="http://localhost:8888/image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
                 <li style="margin-left:-10px;margin-right:10px;" th:if="${session.headimage!=null}"><img th:src="${session.headimage}" style="width:35px;height:35px;margin-top:8px;" /></li>
                 <li ><a href="http://localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
                 <li id="divDate"></li>

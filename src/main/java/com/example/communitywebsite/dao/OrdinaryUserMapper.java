@@ -16,5 +16,5 @@ public interface OrdinaryUserMapper {
     List<OrdinaryUser> getAllByCid(int cid);
     int countByCid(int cid);
     OrdinaryUser getCreateUserByCid(int cid);
-    int updatePowerByName(String username);
+    int updatePowerByName(OrdinaryUser username);
 }

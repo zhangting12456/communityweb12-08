@@ -45,7 +45,7 @@ header div{
 .community_phone{
     width:40px;
     height:40px;
-    border:1px solid red;
+    /*border:1px solid red;*/
 }
 .community_info li:nth-child(2){
     line-height: 40px;
@@ -214,7 +214,7 @@ main{
     color:rgba(62,62,62,1);
 }
 .download ul li {
-    widows: 97%;
+    width: 97%;
     height:27px;
     display: flex;
     justify-content: space-between;
@@ -306,7 +306,7 @@ main{
     height:49px;
     /* float:left; */
     margin:10px auto;
-    border:1px solid blue;
+    /*border:1px solid blue;*/
 }
 /* .user-info{
     float:left;
@@ -388,7 +388,7 @@ main{
 .user_list ul li:nth-child(n+2) div{
     width: 30px;
     height:30px;
-    border:1px solid red;
+    /*border:1px solid red;*/
 }
 .user_list ul li:hover{
  background:rgba(255,255,255,1);
@@ -423,4 +423,7 @@ footer{
 }
 .displayone table tr{
     height:20px;
+}
+.button a{
+    color:rgba(62,62,62,1);
 }

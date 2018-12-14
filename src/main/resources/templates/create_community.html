@@ -19,16 +19,16 @@
                 </div>
                 <div class="navigation-bar">
                     <ul class="nav-bar-ul">
-                        <li class="nav-bar-li"><a href="javascript:(0);">首页</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">学术类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">科技类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">思政类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">文艺类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">体育类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">实践类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">公益类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">班级类</a></li>
-                        <li class="nav-bar-li"><a href="javascript:(0);">同乡类</a></li>
+                        <li class="nav-bar-li"><a href="index.html">首页</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=1">学术类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=2">科技类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=3">思政类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=4">文艺类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=5">体育类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=6">实践类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=7">公益类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=8">班级类</a></li>
+                        <li class="nav-bar-li"><a href="index.html?id=9">同乡类</a></li>
                     </ul>
                 </div>
                 <div class="user">
@@ -43,7 +43,7 @@
                     </ul>
                     <ul th:if="${session.username!=null}">
                         <li style="margin-left:-10px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
-                        <li ><a href="user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                        <li ><a href="http://localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
                         <li id="divDate"></li>
                         <li>
                             <div id="divWeek"></div>
@@ -127,7 +127,7 @@
                                 <span>*</span>&nbsp;&nbsp;创建人:
                             </td>
                             <td>
-                                <input type="text" name="createname" placeholder="请输入姓名" class="ordinary_text">
+                                <input type="text"  value="${session.username}" name="createname" placeholder="请输入姓名" class="ordinary_text" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -309,6 +309,9 @@
             success:function (result) {
                 if(result.code==200){
                     swal(result.extend.info,"","success");
+                    setTimeout(function(){
+                        window.location.href="http://localhost:8888/create_community.html";
+                    },2000);
                 }else{
                     swal(result.extend.info,"","error");
                 }

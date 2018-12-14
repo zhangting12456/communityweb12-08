@@ -24,7 +24,7 @@ public class CommunityUserController {
         String name = request.getParameter("name");
         int uid = userService.getOneByName(name).getUid();
         int cid = Integer.parseInt(request.getParameter("cid"));
-//        System.out.println(name+"========"+cid+"======="+uid);
+//       System.out.println(name+"========"+cid+"======="+uid);
         CommunityUser communityUser = new CommunityUser(0,cid,uid,null,null);
         boolean b = communityUserService.selectByCidUid(communityUser);
         if(b){

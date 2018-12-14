@@ -17,7 +17,7 @@
                 <ul>
                     <li>
                         <div class="community_phone">
-                            <img th:src="'http://localhost:8080'+${item.logo}">
+                            <img th:src="'http://localhost:8080'+${item.logo}" style="width:40px;">
                         </div>
                     </li>
                     <li th:text="${item.communityname}">书法协会</li>
@@ -59,7 +59,8 @@
             <div class="left_div">
                 <div class="introduction">
                     <p>简介</p>
-                    <p th:text="${item.profile.historycontext}"> </p>
+                    <p  th:if="${item.profile ==null}" >暂无内容 </p>
+                    <p th:if="${item.profile !=null}" th:text="${item.profile.historycontext}"> </p>
                 </div>
                 <div class="activity_information">
                     <div class="activity">
@@ -141,10 +142,12 @@
                        </p>
                     </div>
                     <ul>
-                        <li>
-                            <span>资料名称</span>
-                            <span class="button">下载</span>
-                            <span>2018-12-09</span>
+                        <li th:each="data:${dataList}">
+                            <span th:text="${data.dataname}">资料名称</span>
+                            <span class="button">
+                                <a th:href="'http://127.0.0.1:8080'+${data.dataurl}">下载</a>
+                            </span>
+                            <span th:text="${data.createdate}">2018-12-09</span>
                         </li>
                         <li>
                             <span>资料名称</span>
@@ -195,7 +198,7 @@
             <div class="right_div">
                 <div class="create_user" th:each="userlist:${userList}" th:if="${userlist.CommunityDuties eq '创始人'}" >
                     <div class="user_headimg">
-                        <img th:src="'http://localhost:8080/'+${userlist.HeadImage}">
+                        <img th:src="'http://localhost:8080/'+${userlist.HeadImage}" style="width:46px;">
                     </div>
                     <div class="user-info">
                         <p th:text="'创始人：'+${userlist.username}">创始人：张某某</p>
@@ -216,14 +219,14 @@
                        <li>成员列表</li>
                        <li th:each="userlist:${userList}" th:if="${userlist.CommunityDuties eq '会长'}">
                            <div>
-                               <img th:src="'http://localhost:8080'+${userlist.HeadImage}">
+                               <img th:src="'http://localhost:8080'+${userlist.HeadImage}" style="width:32px;">
                             </div>
                            <span th:text="'姓名：'+${userlist.username}">姓名：张木木</span>
                            <span >职位：会长</span>
                        </li>
                        <li th:each="communityname:${communityuser}">
                             <div>
-                                <img th:src="'http://localhost:8080'+${communityname.ordinaryUser.HeadImage}">
+                                <img th:src="'http://localhost:8080'+${communityname.ordinaryUser.HeadImage}" style="width:32px;">
                             </div>
                             <span th:text="'姓名：'+${communityname.ordinaryUser.username}">姓名：张木木</span>
                             <span >职位：会员</span>

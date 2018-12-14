@@ -60,7 +60,8 @@
             <div style="width:215px;height:150px; float: left;">
                 <div  class="left" th:each="user:${userList}" th:if="${user.CommunityDuties eq '创始人'}">
                     <div class="username_phone">
-                        <img src="http://localhost:8888/image/community-detail01.png" th:src="'http://localhost:8080/'+${user.HeadImage}"/>
+                        <img th:if="${user.HeadImage == null}" src="http://localhost:8888/image/community-detail01.png"  style="width:72px;"/>
+                        <img th:if="${user.HeadImage != null}" th:src="'http://localhost:8080/'+${user.HeadImage}" style="width:72px;"/>
                     </div>
                     <div class="user_info" >
                         <p>
@@ -83,7 +84,8 @@
                     </div>
                 </div>
                 <div class="breif-introduction">
-                    <p th:text="${item.profile.historycontext}"></p>
+                    <p th:if="${item.profile != null}" th:text="${item.profile.historycontext}"></p>
+                    <p th:if="${item.profile == null}">暂无内容</p>
                 </div>
                 <div class="activity_info">
                     <div class="activity">
@@ -200,7 +202,7 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080'+${userlist.HeadImage}"/>
+                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080'+${userlist.HeadImage}" style="width:60px;"/>
                                 </td>
                                 <td th:text="'姓名：'+${userlist.username}">姓名：张某某</td>
                             </tr>
@@ -213,7 +215,7 @@
                         <table>
                             <tr>
                                 <td rowspan="2">
-                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080/'+${users.ordinaryUser.HeadImage}"/>
+                                    <img src="http://localhost:8888/image/community-detail03.png" th:src="'http://localhost:8080/'+${users.ordinaryUser.HeadImage}" style="width:60px;"/>
                                 </td>
                                 <td th:text="'姓名：'+${users.ordinaryUser.username}">姓名：张某某</td>
                             </tr>
@@ -222,84 +224,6 @@
                             </tr>
                         </table>
                     </div>
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<table>-->
-                            <!--<tr>-->
-                                <!--<td rowspan="2">-->
-                                    <!--<img src="http://localhost:8888/image/community-detail03.png"/>-->
-                                <!--</td>-->
-                                <!--<td>姓名：张某某</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>职位：会长</td>-->
-                            <!--</tr>-->
-                        <!--</table>-->
-                    <!--</div>-->
                 </div>
                 <div class="fenge user">
                     <span>资料下载</span>
@@ -309,25 +233,25 @@
                 </div>
                 <div class="download">
                      <ul class="download_ul">
-                        <li class="download_li">
-                            <span>资料下载</span>
-                            <span>2018-12-09</span>
+                        <li class="download_li" th:each="data:${dataList}">
+                            <span th:text="${data.dataname}">资料下载</span>
+                            <span th:text="${data.createdate}">2018-12-09</span>
                             <span>
-                                <a href="javascript:void(0);">下载</a>
+                                <a th:href="'http://127.0.0.1:8080'+${data.dataurl}" download="">下载</a>
                             </span>
                         </li>
                         <li class="download_li">
                             <span>资料下载</span>
                             <span>2018-12-09</span>
                             <span>
-                                <a href="javascript:void(0);">下载</a>
+                                <a href="javascript:void(0);" download="">下载</a>
                             </span>
                         </li>
                         <li class="download_li">
                             <span>资料下载</span>
                             <span>2018-12-09</span>
                             <span>
-                                <a href="javascript:void(0);">下载</a>
+                                <a href="javascript:void(0);" download="">下载</a>
                             </span>
                         </li>
                         <li class="download_li">

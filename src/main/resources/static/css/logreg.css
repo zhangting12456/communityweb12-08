@@ -9,7 +9,7 @@ body{
 .login{
     width:1079px;
     height:619px;
-    margin-left:100px;
+    margin-left:150px;
     position:fixed;
     background:rgba(242,242,242,1);
     background-image: url("../image/login-back.png");
@@ -31,7 +31,7 @@ body{
 }
 .login-main{
     width:375px;
-    /* height: 396px; */
+     height: 350px;
     margin:10px auto;
     /* border:1px solid red; */
 }

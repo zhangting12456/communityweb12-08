@@ -67,8 +67,8 @@
         SELECT * FROM t_ordinary_user
          WHERE t_ordinary_user.CommunityId = #{CommunityId}  AND t_ordinary_user.Jurisdiction = 1;
     </select>
-    <update id="updatePowerByName" parameterType="String" >
-        UPDATE t_ordinary_user SET t_ordinary_user.CommunityId = 1 ,
+    <update id="updatePowerByName" parameterType="com.example.communitywebsite.bean.OrdinaryUser" >
+        UPDATE t_ordinary_user SET t_ordinary_user.CommunityId = #{CommunityId} ,
         t_ordinary_user.CommunityDuties = '创始人' ,t_ordinary_user.Jurisdiction = 1
         WHERE username = #{username}
     </update>

@@ -74,8 +74,8 @@ public class OrdinaryUserService {
         return user;
     }
 
-    public  boolean  updatePowerByName(String username){
-        int b = userMapper.updatePowerByName(username);
+    public  boolean  updatePowerByName(OrdinaryUser user){
+        int b = userMapper.updatePowerByName(user);
         if(b == 0){
             return false;
         }else{

@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class CommunityUser {
     private int id;
-    private int uid;
+
     private int cid;
+    private int uid;
     private CommunityHome community;
    private OrdinaryUser ordinaryUser;
 }

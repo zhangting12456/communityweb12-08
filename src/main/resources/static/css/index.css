@@ -130,6 +130,9 @@
     font-weight:500;
     line-height:15px;
     color:rgba(62,62,62,1);
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
 }
 .join{
     width:132px;

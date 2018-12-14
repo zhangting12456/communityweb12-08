@@ -31,7 +31,7 @@
                         <li class="nav-bar-li"><a href="index.html?id=9">同乡类</a></li>
                     </ul>
                 </div>
-                <div class="user">
+                <div class="user" style="margin-left: 1px;">
                     <ul th:if="${session.username==null}">
                         <li ><a href="login.html" id="username">登录</a></li>
                         <li ><a href="register.html">注册</a></li>
@@ -43,7 +43,7 @@
                     </ul>
                     <ul th:if="${session.username!=null}">
                         <li style="margin-left:20px;margin-right:10px;"><img src="image/矩形 107.png" style="width:35px;height:35px;margin-top:8px;" /></li>
-                        <li ><a href="http:localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
+                        <li ><a href="http://localhost:8888/user_detail.html" th:text="${session.username}" id="username">登录</a></li>
                         <li id="divDate"></li>
                         <li>
                             <div id="divWeek"></div>
@@ -59,7 +59,7 @@
             <div class="user-image">
                 <div class="left-logo"><img src="image/组 9.png" alt=""></div>
                 <div class="userimg" th:if="${user.HeadImage==null}"><img src="image/default01.png" alt=""></div>
-                <div class="userimg" th:if="${user.HeadImage!=null}"><img src="image/default01.png" alt="" th:src="${user.HeadImage}"></div>
+                <div class="userimg" th:if="${user.HeadImage!=null}"><img alt="" th:src="${user.HeadImage}" id="xinxin"></div>
                 <div class="username"><span th:text="${user.username}">ZHANTING</span></div>
             </div>
             <div class="user-list">
@@ -94,7 +94,7 @@
                     <!--<form id="updateImg_form">-->
                         <div class="phone_spance">
                             <img src="image/jiahao.png" alt="头像" class="jiahao" id="portraitPath_btn"/>
-                            <img src="image/default01.png" alt="头像" id="user_phone" hidden="hidden" />
+                            <img src="image/default01.png" alt="头像" id="user_phone" hidden="hidden" style="width:92px;" />
                         </div>
                     <!--</form>-->
                     <div class="default_phone">
@@ -196,7 +196,7 @@
                     <p class="comm_text" th:text="${item.applyReasons}">我们希望所有学生签证的申请人都可以耐心地等待申请结果。</p>
                     <p>
                         <!--href="create_community.html"-->
-                        <span class="jianzhan"><a href="javascript:void(0);" id="create_community" th:data_id="${item.id}">建站</a></span>
+                        <span class="jianzhan"><a href="javascript:void(0);" class="create_community" th:data_id="${item.id}">建站</a></span>
                         <sapn class="date" th:text="${item.applyDate}">2018-10-12</sapn>
                     </p>
                 </div>
@@ -238,13 +238,22 @@
     });
     $('#saveuser').click(function(){
         var data = $('#user').serialize();
-        console.log(data);
+        // console.log(data);
         $.ajax({
             url:'updateuser',
             type:'POST',
             data:data,
             success:function(result){
-                alert(result);
+                // alert(result);
+                if(result.code == 200){
+                    swal("修改成功",'','success');
+                    setTimeout(function(){
+                        var src = $('#user_phone').attr('src');
+                        $('#xinxin').attr('src',src);
+                    },2000);
+                }else{
+                    swal("修改失败",'','error');
+                }
             }
         })
     });
@@ -260,9 +269,9 @@
             }
         });
     });
-    $('#create_community').click(function () {
+    $('.create_community').click(function () {
         var id = $(this).attr("data_id");
-        console.log(id);
+        // console.log(id);
         $.ajax({
             url:'http://localhost:8888/applyResult',
             type:'post',

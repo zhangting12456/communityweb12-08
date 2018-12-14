@@ -54,9 +54,13 @@
                         data:$('.login-form').serialize(),
                         success:function(result){
                             // alert(result.code+'----------'+result.extend.info);
-                            alert(result.extend.info);
+                            // alert(result.extend.info);
+
                             if(result.code==200){
                                 window.location.href="http://localhost:8888/login.html";
+                                swal(result.extend.info,'','success')
+                            }else{
+                                swal(result.extend.info,'','error')
                             }
                         }
                     });

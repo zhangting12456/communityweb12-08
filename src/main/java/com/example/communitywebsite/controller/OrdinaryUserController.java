@@ -30,11 +30,11 @@ public class OrdinaryUserController {
     public String toUserDetail(HttpServletRequest request, Model model){
         String username = (String) request.getSession().getAttribute("username");
         OrdinaryUser user = ordinaryUserService.getOneByName(username);
-
         List<Apply> noApply = applyService.getApplyByNoPass(username);
         List<Apply> adoptApply = applyService.getApplyByAdoptName(username);
         List<Apply> waitApply = applyService.getApplyByWait(username);
         List<CommunityUser> list = communityUserService.getCommunityUser(username);
+        System.out.println(list);
         model.addAttribute("noApply",noApply);
         model.addAttribute("waitApply",waitApply);
         model.addAttribute("adoptApply",adoptApply);

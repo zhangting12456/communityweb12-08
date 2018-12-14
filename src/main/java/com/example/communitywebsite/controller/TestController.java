@@ -39,6 +39,7 @@ public class TestController {
 //        查询会长和创始人
         List<OrdinaryUser> userList = ordinaryUserService.getAllByCid(chome.getId());
         List<DataDownload> dataList = dataDownloadService.getAllByCid(chome.getId());
+        System.out.println(dataList);
 //       System.out.println(userList);
         int countUser = ordinaryUserService.countByCid(chome.getId());
         OrdinaryUser createUser = ordinaryUserService.getCreateUserByCid(chome.getId());
